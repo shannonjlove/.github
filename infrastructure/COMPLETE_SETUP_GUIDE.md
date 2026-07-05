@@ -14,6 +14,81 @@ This system provides:
 
 ---
 
+## Part 0: 1Password CLI (Secure Credentials) ⭐ START HERE
+
+### Prerequisites
+- 1Password account (personal or organization)
+- Administrator access to install software on VPS
+
+### Installation
+
+**CRITICAL: Do this FIRST before adding any other credentials to the system.**
+
+```bash
+sudo bash /home/user/.github/infrastructure/security/1password-setup.sh
+```
+
+### First-Time Setup
+
+1. **Sign in to 1Password:**
+```bash
+op signin
+# Follow prompts to authenticate
+```
+
+2. **Create "Infrastructure" Vault:**
+   - Open 1Password app (desktop/web)
+   - Create new vault named "Infrastructure"
+   - Share with your VPS if organization account
+
+3. **Add Credentials to Vault:**
+
+Create these items in 1Password:
+
+**Twilio SMS** (Login)
+- Username: your-twilio-account-id
+- Password: Your Account SID
+- Fields: Auth Token, Phone Number, Recipient Phone
+
+**Bookstack** (Login)  
+- Username: admin
+- Password: http://your-bookstack-url
+- Fields: API Token, API Secret
+
+**Paperless-NGX** (Login)
+- Username: admin
+- Password: Your API Token
+- Fields: URL
+
+**Remote Executor** (Secure Note)
+- API URL: http://72.61.74.250:8813
+- API Key: Your remote executor key
+- Port: 8813
+
+### Helper Scripts Available
+
+After setup, use these commands:
+
+```bash
+# Get single secret
+get-secret Infrastructure Twilio "Account SID"
+
+# Load all Twilio credentials
+eval "$(get-twilio-creds)"
+
+# Load all credentials at once
+eval "$(load-1password-env)"
+
+# List all items
+op item list --vault Infrastructure
+```
+
+### Quick Reference
+
+Full documentation: `/home/user/.github/infrastructure/security/1PASSWORD_QUICK_START.md`
+
+---
+
 ## Part 1: Twilio SMS Setup
 
 ### Prerequisites
@@ -23,29 +98,24 @@ This system provides:
 
 ### Installation
 
-1. **Run setup script:**
-```bash
-sudo bash /home/user/.github/infrastructure/notification/twilio-sms-config.sh
-```
-
-2. **Get Twilio credentials:**
+1. **Get Twilio credentials:**
    - Visit https://www.twilio.com/console
    - Sign up for free account
    - Create Project
    - Get: Account SID, Auth Token, Twilio Phone Number
 
-3. **Configure credentials:**
+2. **Store in 1Password:**
+   - Create "Twilio" item in "Infrastructure" vault
+   - Add Account SID, Auth Token, Phone Number, Recipient
+   - (See Part 0 for details)
+
+3. **Load from 1Password and configure:**
 ```bash
-sudo nano /etc/twilio/config.sh
+eval "$(get-twilio-creds)"
+sudo bash /home/user/.github/infrastructure/notification/twilio-sms-config.sh
 ```
 
-Fill in:
-```bash
-export TWILIO_ACCOUNT_SID="ACxxxxxxxxxxxxxxxx"
-export TWILIO_AUTH_TOKEN="your-auth-token"
-export TWILIO_PHONE_NUMBER="+1234567890"  # Your Twilio number
-export SMS_RECIPIENT="+1.718.208.3290"    # (already set)
-```
+The script will automatically use credentials from environment.
 
 4. **Test SMS:**
 ```bash
@@ -294,19 +364,20 @@ curl -X POST http://localhost:9001/event \
    - Create new token with permissions
    - Copy Token ID and Secret
 
-2. **Configure Event Logger:**
-```bash
-export BOOKSTACK_URL="http://localhost:8000"
-export BOOKSTACK_API_TOKEN="your-token-id"
-export BOOKSTACK_API_SECRET="your-token-secret"
-```
+2. **Store in 1Password:**
+   - Create "Bookstack" item in "Infrastructure" vault
+   - Add Base URL, API Token, API Secret
+   - (See Part 0 for details)
 
-3. **Test logging:**
+3. **Load from 1Password and test:**
 ```bash
+eval "$(get-bookstack-creds)"
 python3 /home/user/.github/infrastructure/event-logging/bookstack-event-logger.py \
   "test-event" \
   '{"message": "Test event from CLI"}'
 ```
+
+Credentials automatically loaded from 1Password environment variables.
 
 ### Bookstack Hierarchy
 
