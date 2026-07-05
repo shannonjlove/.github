@@ -91,11 +91,6 @@ WantedBy=multi-user.target
   - Networks: app-net
   - Status: Docker Compose → Quadlet (converted)
 
-### Media & Asset Management
-- **photoprism.container** - Photo management with AI tagging
-  - Port: 2342 (HTTP, localhost only)
-  - Networks: app-net
-  - Status: Docker Compose → Quadlet (converted)
 
 ### Infrastructure & Networking
 - **pibn.container** - Monitoring & observability
@@ -122,8 +117,7 @@ app-net (isolated, internal)
   ├─ basic-memory (memory MCP)
   ├─ rclone-mcp (cloud storage)
   ├─ bookstack (knowledge base)
-  ├─ paperless (document management)
-  └─ photoprism (photo management)
+  └─ paperless (document management)
 
 infra-net (isolated, infrastructure only)
   ├─ sjl-mcp-quadlet (orchestration)
