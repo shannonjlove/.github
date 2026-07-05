@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "sjl-mcp": {
+      "command": "python3",
+      "args": [
+        "-m",
+        "mcp.server",
+        "http://localhost:8811"
+      ],
+      "env": {
+        "MCP_SERVER_URL": "http://localhost:8811"
+      }
+    }
+  }
+}

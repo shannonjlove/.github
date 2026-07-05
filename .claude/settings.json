@@ -1,0 +1,17 @@
+{
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": ["sjl-mcp"],
+  "permissions": {
+    "allow": [
+      "Bash(ssh *)",
+      "Bash(podman *)",
+      "Bash(systemctl *)",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep"
+    ],
+    "defaultMode": "ask"
+  }
+}
