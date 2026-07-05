@@ -1,0 +1,28 @@
+[Unit]
+Description=Paperless-ngx - Document Management System
+Documentation=https://docs.paperless-ngx.com/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/paperless-ngx/paperless-ngx:latest
+ContainerName=paperless
+PublishPort=127.0.0.1:8000:8000
+Networks=app-net
+Volume=/var/podman/paperless/data:/usr/src/paperless/data
+Volume=/var/podman/paperless/media:/usr/src/paperless/media
+Volume=/var/podman/paperless/export:/usr/src/paperless/export
+EnvironmentFile=/etc/podman/secrets/paperless.env
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:8000/ || exit 1
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

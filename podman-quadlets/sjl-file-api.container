@@ -1,0 +1,28 @@
+[Unit]
+Description=SJL File API - File Upload & Management Service
+Documentation=https://github.com/shannonjlove/sjl-file-api
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/shannonjlove/sjl-file-api:latest
+ContainerName=sjl-file-api
+PublishPort=127.0.0.1:3000:3000
+Networks=app-net
+Volume=/var/podman/sjl-file-api/uploads:/app/uploads
+Volume=/var/podman/sjl-file-api/config:/app/config
+EnvironmentFile=/etc/podman/secrets/sjl-file-api.env
+Environment=TZ=UTC
+Environment=NODE_ENV=production
+HealthCheck=curl -f http://localhost:3000/health || exit 1
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

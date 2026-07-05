@@ -41,47 +41,96 @@ WantedBy=multi-user.target
 - **nginx-proxy-manager.container** - Reverse proxy, SSL/TLS, load balancing
   - Ports: 80 (HTTP), 443 (HTTPS), 81 (Admin panel)
   - Networks: frontend-net, app-net
+  - Status: Existing quadlet (standardized)
 
-### Application Layer
+### Core MCP & Infrastructure Services
 - **sjl-mcp-quadlet.container** - VPS filesystem & infrastructure management MCP server
   - Port: 8811 (HTTP, localhost only)
   - Networks: app-net, infra-net
+  - Status: Existing quadlet (standardized)
   
 - **memory-agent.container** - Long-term memory & context management
   - Port: 8812 (HTTP, localhost only)
   - Networks: app-net
+  - Status: Existing quadlet (standardized)
+
+- **sjl-file-api.container** - File upload & management service
+  - Port: 3000 (HTTP, localhost only)
+  - Networks: app-net
+  - Status: Docker Compose → Quadlet (converted)
+
+- **mcp-filesystem.container** - Model Context Protocol filesystem service
+  - Port: 3001 (HTTP, localhost only)
+  - Networks: app-net
+  - Status: Docker Compose → Quadlet (converted)
+
+- **basic-memory.container** - MCP memory service
+  - Port: 3002 (HTTP, localhost only)
+  - Networks: app-net
+  - Status: Docker Compose → Quadlet (converted)
 
 ### Storage & Synchronization
 - **rclone-mcp.container** - Cloud storage integration (MCP server)
   - Port: 5572 (localhost only)
   - Networks: app-net, infra-net
+  - Status: Docker Compose → Quadlet (converted)
   
 - **rclone-rc.container** - File synchronization & remote control
   - Port: 5571 (localhost only)
   - Networks: infra-net
+  - Status: Docker Compose → Quadlet (converted)
 
-### Infrastructure
+### Documentation & Knowledge Management
+- **bookstack.container** - Documentation & knowledge base platform
+  - Port: 6875 (HTTP, localhost only)
+  - Networks: app-net
+  - Status: Docker Compose → Quadlet (converted)
+
+- **paperless.container** - Document management & OCR system
+  - Port: 8000 (HTTP, localhost only)
+  - Networks: app-net
+  - Status: Docker Compose → Quadlet (converted)
+
+### Media & Asset Management
+- **photoprism.container** - Photo management with AI tagging
+  - Port: 2342 (HTTP, localhost only)
+  - Networks: app-net
+  - Status: Docker Compose → Quadlet (converted)
+
+### Infrastructure & Networking
 - **pibn.container** - Monitoring & observability
   - Port: 9090 (localhost only)
   - Networks: infra-net
+  - Status: Docker Compose → Quadlet (converted)
+
+- **tailscale.container** - Wireguard-based VPN connectivity
+  - Networks: infra-net
+  - Status: Docker Compose → Quadlet (converted)
 
 ## Network Architecture
 
 ```
 frontend-net (isolated)
-  └─ nginx-proxy-manager (public-facing)
+  └─ nginx-proxy-manager (public-facing, SSL/TLS)
 
-app-net (isolated)
-  ├─ nginx-proxy-manager
-  ├─ sjl-mcp-quadlet
-  ├─ memory-agent
-  └─ rclone-mcp
+app-net (isolated, internal)
+  ├─ nginx-proxy-manager (routing backend)
+  ├─ sjl-mcp-quadlet (infrastructure management)
+  ├─ memory-agent (context/memory)
+  ├─ sjl-file-api (file handling)
+  ├─ mcp-filesystem (file system MCP)
+  ├─ basic-memory (memory MCP)
+  ├─ rclone-mcp (cloud storage)
+  ├─ bookstack (knowledge base)
+  ├─ paperless (document management)
+  └─ photoprism (photo management)
 
-infra-net (isolated)
-  ├─ sjl-mcp-quadlet
-  ├─ rclone-mcp
-  ├─ rclone-rc
-  └─ pibn
+infra-net (isolated, infrastructure only)
+  ├─ sjl-mcp-quadlet (orchestration)
+  ├─ rclone-mcp (cloud sync)
+  ├─ rclone-rc (file sync control)
+  ├─ pibn (monitoring)
+  └─ tailscale (VPN access)
 ```
 
 ## Deployment
@@ -126,6 +175,35 @@ sudo systemctl status rclone-mcp.service
 sudo systemctl status rclone-rc.service
 sudo systemctl status pibn.service
 ```
+
+## Migration Status (Docker Compose → Quadlets)
+
+### Phase 1: Discovery & Standardization ✅
+- Discovered 10+ Docker Compose services across `/opt/`
+- Created standardized quadlet schema for all services
+- All quadlets follow consistent Unit/Container/Service/Install structure
+
+### Phase 2: Conversion Complete ✅
+- 3 existing quadlets standardized (nginx-proxy-manager, sjl-mcp-quadlet, memory-agent)
+- 10 Docker Compose services converted to standardized quadlets:
+  - sjl-file-api (from /opt/sjl-mcp/)
+  - mcp-filesystem (from /opt/mcp/repos/)
+  - basic-memory (from /opt/mcp/repos/)
+  - rclone-mcp, rclone-rc (from /opt/)
+  - bookstack (multiple instances consolidated)
+  - paperless (from /opt/paperless/)
+  - photoprism (from /opt/tagback/)
+  - pibn (from /opt/)
+  - tailscale (from /opt/)
+
+### Phase 3: Next Steps
+1. **Backup existing configuration**: Copy current Docker Compose files to backup
+2. **Create secrets**: Fill in actual credentials in `/etc/podman/secrets/` (from existing configs)
+3. **Create data directories**: `mkdir -p /var/podman/{service}/{config,data,logs}`
+4. **Deploy quadlets**: Copy `.container` files to `/etc/containers/systemd/`
+5. **Start services**: `systemctl daemon-reload && systemctl start *.service`
+6. **Verify**: Health checks and logs
+7. **Remove Docker Compose files**: After verification
 
 ## Environment Files
 

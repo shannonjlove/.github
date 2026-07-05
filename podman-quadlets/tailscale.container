@@ -1,0 +1,25 @@
+[Unit]
+Description=Tailscale - Wireguard-based VPN
+Documentation=https://tailscale.com/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=tailscale/tailscale:latest
+ContainerName=tailscale
+Networks=infra-net
+Volume=/var/podman/tailscale/state:/var/lib/tailscale
+Volume=/dev/net/tun:/dev/net/tun:rw
+EnvironmentFile=/etc/podman/secrets/tailscale.env
+Environment=TZ=UTC
+Userns=keep-id
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
