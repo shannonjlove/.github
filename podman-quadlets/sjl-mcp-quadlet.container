@@ -7,12 +7,14 @@ Wants=network-online.target
 [Container]
 Image=ghcr.io/shannonjlove/sjl-mcp:latest
 ContainerName=sjl-mcp-quadlet
-PublishPort=127.0.0.1:8811:8811
+PublishPort=0.0.0.0:8811:8811
 Volume=/var/podman/sjl-mcp/config:/app/config
 Networks=app-net,infra-net
 EnvironmentFile=/etc/podman/secrets/sjl-mcp.env
 Environment=MCP_HOST=0.0.0.0
 Environment=MCP_PORT=8811
+Environment=MCP_AUTH_ENABLED=true
+Environment=MCP_API_KEY=your-secure-key-here
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost:8811/ || exit 1
 HealthCheckInterval=30s
