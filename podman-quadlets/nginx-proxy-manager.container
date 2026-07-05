@@ -1,0 +1,29 @@
+[Unit]
+Description=Nginx Proxy Manager
+Documentation=https://nginxproxymanager.com/setup
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=docker.io/jc21/nginx-proxy-manager:latest
+ContainerName=nginx-proxy-manager
+PublishPort=80:80
+PublishPort=443:443
+PublishPort=127.0.0.1:81:81
+Volume=/var/podman/nginx-proxy-manager/data:/data
+Volume=/var/podman/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+Networks=frontend-net,app-net
+EnvironmentFile=/etc/podman/secrets/nginx-proxy-manager.env
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost/ || exit 1
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

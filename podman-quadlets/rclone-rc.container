@@ -1,0 +1,26 @@
+[Unit]
+Description=Rclone Remote Control - File Synchronization Service
+Documentation=https://rclone.org/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=rclone/rclone:latest
+ContainerName=rclone-rc
+Networks=infra-net
+Volume=/var/podman/rclone-rc/config:/root/.config/rclone
+Volume=/var/podman/rclone-rc/data:/data
+EnvironmentFile=/etc/podman/secrets/rclone-rc.env
+Environment=TZ=UTC
+AutoUpdate=registry
+Exec=rcd --rc-addr=127.0.0.1:5571
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

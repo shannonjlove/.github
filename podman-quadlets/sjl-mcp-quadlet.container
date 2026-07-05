@@ -1,0 +1,28 @@
+[Unit]
+Description=SJL MCP Server - VPS Filesystem & Infrastructure Management
+Documentation=https://memory.shannonjlove.cloud/sjl-mcp/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/shannonjlove/sjl-mcp:latest
+ContainerName=sjl-mcp-quadlet
+PublishPort=127.0.0.1:8811:8811
+Networks=app-net,infra-net
+Volume=/var/podman/sjl-mcp/config:/app/config
+EnvironmentFile=/etc/podman/secrets/sjl-mcp.env
+Environment=MCP_HOST=0.0.0.0
+Environment=MCP_PORT=8811
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:8811/ || exit 1
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

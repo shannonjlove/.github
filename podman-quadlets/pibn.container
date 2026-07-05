@@ -1,0 +1,27 @@
+[Unit]
+Description=PIBN - Infrastructure Monitoring & Observability
+Documentation=https://github.com/shannonjlove/pibn
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/shannonjlove/pibn:latest
+ContainerName=pibn
+PublishPort=127.0.0.1:9090:9090
+Networks=infra-net
+Volume=/var/podman/pibn/config:/etc/pibn
+Volume=/var/podman/pibn/data:/var/lib/pibn
+EnvironmentFile=/etc/podman/secrets/pibn.env
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:9090/-/healthy || exit 1
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
