@@ -1,0 +1,31 @@
+[Unit]
+Description=Remote Command Executor for Claude Code
+Documentation=https://memory.shannonjlove.cloud/remote-executor/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=python:3.11-slim
+ContainerName=remote-executor
+PublishPort=0.0.0.0:8812:8812
+Volume=/home/user/.github/infrastructure/remote-executor.py:/app/executor.py:ro
+Volume=/var/podman/remote-executor/logs:/var/log
+Networks=app-net,infra-net
+EnvironmentFile=/etc/podman/secrets/remote-executor.env
+Exec=python3 /app/executor.py
+HealthCheck=curl -f http://localhost:8812/health || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
