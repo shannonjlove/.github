@@ -4,11 +4,11 @@
       "command": "python3",
       "args": [
         "-m",
-        "mcp.server",
-        "http://localhost:8811"
+        "mcp.server"
       ],
       "env": {
-        "MCP_SERVER_URL": "http://localhost:8811"
+        "MCP_SERVER_URL": "http://72.61.74.250:8813",
+        "MCP_BEARER_TOKEN": "9d7a77b557782e91e7bd7f79884098c80e495eb4adfd17598e6073770bf5687"
       }
     }
   }
