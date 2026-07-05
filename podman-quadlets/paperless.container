@@ -8,13 +8,17 @@ Wants=network-online.target
 Image=ghcr.io/paperless-ngx/paperless-ngx:latest
 ContainerName=paperless
 PublishPort=127.0.0.1:8000:8000
-Networks=app-net
 Volume=/var/podman/paperless/data:/usr/src/paperless/data
 Volume=/var/podman/paperless/media:/usr/src/paperless/media
 Volume=/var/podman/paperless/export:/usr/src/paperless/export
+Networks=app-net
 EnvironmentFile=/etc/podman/secrets/paperless.env
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost:8000/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 
 [Service]

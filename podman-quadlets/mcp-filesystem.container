@@ -8,11 +8,15 @@ Wants=network-online.target
 Image=ghcr.io/modelcontextprotocol/filesystem:latest
 ContainerName=mcp-filesystem
 PublishPort=127.0.0.1:3001:3001
-Networks=app-net
 Volume=/var/podman/mcp-filesystem/config:/app/config
+Networks=app-net
 EnvironmentFile=/etc/podman/secrets/mcp-filesystem.env
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost:3001/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 
 [Service]

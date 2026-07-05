@@ -16,6 +16,10 @@ Networks=frontend-net,app-net
 EnvironmentFile=/etc/podman/secrets/nginx-proxy-manager.env
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 
 [Service]

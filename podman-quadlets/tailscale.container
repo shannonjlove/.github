@@ -7,11 +7,17 @@ Wants=network-online.target
 [Container]
 Image=tailscale/tailscale:latest
 ContainerName=tailscale
-Networks=infra-net
 Volume=/var/podman/tailscale/state:/var/lib/tailscale
 Volume=/dev/net/tun:/dev/net/tun:rw
+Networks=infra-net
 EnvironmentFile=/etc/podman/secrets/tailscale.env
 Environment=TZ=UTC
+HealthCheck=tailscale status || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
+AutoUpdate=registry
 Userns=keep-id
 
 [Service]

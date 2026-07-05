@@ -8,12 +8,16 @@ Wants=network-online.target
 Image=lscr.io/linuxserver/bookstack:latest
 ContainerName=bookstack
 PublishPort=127.0.0.1:6875:80
-Networks=app-net
 Volume=/var/podman/bookstack/config:/config
 Volume=/var/podman/bookstack/data:/var/www/html/storage/uploads
+Networks=app-net
 EnvironmentFile=/etc/podman/secrets/bookstack.env
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost:80/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 
 [Service]

@@ -8,12 +8,16 @@ Wants=network-online.target
 Image=ghcr.io/shannonjlove/pibn:latest
 ContainerName=pibn
 PublishPort=127.0.0.1:9090:9090
-Networks=infra-net
 Volume=/var/podman/pibn/config:/etc/pibn
 Volume=/var/podman/pibn/data:/var/lib/pibn
+Networks=infra-net
 EnvironmentFile=/etc/podman/secrets/pibn.env
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost:9090/-/healthy || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 
 [Service]

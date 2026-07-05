@@ -8,13 +8,17 @@ Wants=network-online.target
 Image=ghcr.io/shannonjlove/memory-agent:latest
 ContainerName=memory-agent
 PublishPort=127.0.0.1:8812:8812
-Networks=app-net
 Volume=/var/podman/memory-agent/data:/app/data
 Volume=/var/podman/memory-agent/config:/app/config
+Networks=app-net
 EnvironmentFile=/etc/podman/secrets/memory-agent.env
 Environment=AGENT_PORT=8812
 Environment=TZ=UTC
 HealthCheck=curl -f http://localhost:8812/health || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 
 [Service]

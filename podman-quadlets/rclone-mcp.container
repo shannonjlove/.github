@@ -8,11 +8,16 @@ Wants=network-online.target
 Image=rclone/rclone:latest
 ContainerName=rclone-mcp
 PublishPort=127.0.0.1:5572:5572
-Networks=app-net,infra-net
 Volume=/var/podman/rclone-mcp/config:/root/.config/rclone
 Volume=/var/podman/rclone-mcp/data:/data
+Networks=app-net,infra-net
 EnvironmentFile=/etc/podman/secrets/rclone-mcp.env
 Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:5572/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
 AutoUpdate=registry
 Exec=rcd --rc-addr=0.0.0.0:5572
 
