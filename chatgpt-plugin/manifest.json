@@ -1,0 +1,179 @@
+{
+  "plugin_version": "1.0.0",
+  "manifest_version": "1.0",
+  "created_date": "2024-07-10",
+  "updated_date": "2024-07-10",
+  "author": "Claude",
+  "license": "MIT",
+  "description": "ChatGPT plugin for 1Password CLI secret management and deployment automation",
+  "keywords": [
+    "1password",
+    "secrets",
+    "deployment",
+    "security",
+    "devops",
+    "environment-variables",
+    "credentials",
+    "vault",
+    "automation"
+  ],
+  "categories": [
+    "productivity",
+    "security",
+    "devops",
+    "utilities"
+  ],
+  "files": {
+    "plugin_manifest": "ai-plugin.json",
+    "api_spec": "openapi.yaml",
+    "documentation": "CHATGPT_PLUGIN_GUIDE.md",
+    "manifest": "manifest.json",
+    "readme": "README.md"
+  },
+  "requirements": {
+    "chatgpt": {
+      "minimum_version": "ChatGPT Plus",
+      "plugin_access": "required"
+    },
+    "system": {
+      "1password_cli": "v2.34.1+",
+      "bash": "v4.0+",
+      "python": "3.7+"
+    }
+  },
+  "features": [
+    {
+      "name": "Secret Management",
+      "description": "Create, read, update, delete secrets in 1Password vaults",
+      "operations": ["list_secrets", "get_secret", "create_secret", "update_secret", "delete_secret"]
+    },
+    {
+      "name": "Vault Management",
+      "description": "List and manage 1Password vaults",
+      "operations": ["list_vaults", "check_vault_access"]
+    },
+    {
+      "name": "Secret Validation",
+      "description": "Validate required secrets exist",
+      "operations": ["validate_secrets"]
+    },
+    {
+      "name": "Credential Rotation",
+      "description": "Safely rotate and update credentials",
+      "operations": ["rotate_secret"]
+    },
+    {
+      "name": "Deployment",
+      "description": "Deploy applications with secret injection",
+      "operations": ["deploy_server", "check_deployment"]
+    },
+    {
+      "name": "Environment Export",
+      "description": "Export secrets to environment files",
+      "operations": ["export_environment"]
+    },
+    {
+      "name": "Audit & Compliance",
+      "description": "Generate audit reports and compliance data",
+      "operations": ["generate_audit_report"]
+    }
+  ],
+  "api_endpoints": {
+    "secrets": {
+      "list": "/secrets/list",
+      "get": "/secrets/get",
+      "validate": "/secrets/validate",
+      "rotate": "/secrets/rotate"
+    },
+    "vaults": {
+      "list": "/vaults/list"
+    },
+    "deployment": {
+      "check": "/deployment/check",
+      "deploy": "/deployment/deploy"
+    },
+    "environment": {
+      "export": "/environment/export"
+    },
+    "audit": {
+      "report": "/audit/report"
+    }
+  },
+  "authentication": {
+    "type": "none",
+    "description": "Uses local 1Password CLI authentication via 'op account'"
+  },
+  "security": {
+    "encryption": "1Password vault (AES-256)",
+    "access_control": "Role-based via 1Password",
+    "audit_logging": true,
+    "compliance": [
+      "GDPR",
+      "SOC 2"
+    ]
+  },
+  "installation": {
+    "methods": [
+      {
+        "name": "ChatGPT Plugin Store",
+        "description": "Search for '1Password CLI Manager' in ChatGPT Plugin Store",
+        "difficulty": "easy"
+      },
+      {
+        "name": "Manual Installation",
+        "description": "Install via URL: https://github.com/shannonjlove/1password-cli-skill/raw/main/ai-plugin.json",
+        "difficulty": "medium"
+      },
+      {
+        "name": "Development Mode",
+        "description": "Run locally at http://localhost:8000",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  "supported_environments": [
+    {
+      "name": "development",
+      "vault": "Development Secrets",
+      "security_level": "low"
+    },
+    {
+      "name": "staging",
+      "vault": "Staging Secrets",
+      "security_level": "medium"
+    },
+    {
+      "name": "production",
+      "vault": "Production Secrets",
+      "security_level": "high"
+    }
+  ],
+  "supported_servers": [
+    "api-mcp-server",
+    "claude-memory-mcp",
+    "github-mcp-server",
+    "mcp-ssh-server"
+  ],
+  "integration": {
+    "languages": ["English"],
+    "timezones": "Universal",
+    "rate_limits": "No rate limits (local execution)"
+  },
+  "support": {
+    "documentation": "CHATGPT_PLUGIN_GUIDE.md",
+    "github": "https://github.com/shannonjlove/1password-cli-skill",
+    "email": "sjlove@shannonjeffreylove.com"
+  },
+  "changelog": {
+    "1.0.0": {
+      "date": "2024-07-10",
+      "changes": [
+        "Initial release",
+        "Full secret management support",
+        "Deployment automation",
+        "Audit logging",
+        "Security best practices"
+      ]
+    }
+  }
+}

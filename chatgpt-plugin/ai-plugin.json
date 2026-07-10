@@ -1,0 +1,26 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "1Password CLI Manager",
+  "name_for_model": "OnePasswordCLIManager",
+  "description_for_human": "Manage secrets and environment variables using 1Password CLI. Supports local development, deployment automation, and secure secret management across multiple environments.",
+  "description_for_model": "This plugin helps users manage secrets and environment variables using the 1Password CLI. It provides commands to list vaults, manage secrets, validate configurations, rotate credentials, and deploy applications with secure secret injection. Supports development, staging, and production environments.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://raw.githubusercontent.com/shannonjlove/1password-cli-skill/main/openapi.yaml"
+  },
+  "logo_url": "https://raw.githubusercontent.com/shannonjlove/1password-cli-skill/main/logo.png",
+  "contact_email": "sjlove@shannonjeffreylove.com",
+  "legal_info_url": "https://github.com/shannonjlove/1password-cli-skill/blob/main/LICENSE",
+  "category": "productivity",
+  "tags": [
+    "1password",
+    "secrets",
+    "deployment",
+    "security",
+    "devops",
+    "environment-variables"
+  ]
+}
