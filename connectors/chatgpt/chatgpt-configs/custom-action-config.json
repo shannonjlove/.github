@@ -1,0 +1,46 @@
+{
+  "name": "SJL MCP Filesystem",
+  "description": "Read and write files with automatic backups",
+  "url": "https://72.61.74.250:8813",
+  "auth": {
+    "type": "bearer",
+    "token_env_var": "SJL_WRITE_TOKEN"
+  },
+  "tools": [
+    {
+      "id": "read-file",
+      "name": "Read File",
+      "enabled": true
+    },
+    {
+      "id": "write-file",
+      "name": "Write File",
+      "enabled": true
+    },
+    {
+      "id": "list-directory",
+      "name": "List Directory",
+      "enabled": true
+    },
+    {
+      "id": "search-files",
+      "name": "Search Files",
+      "enabled": true
+    },
+    {
+      "id": "get-file-info",
+      "name": "Get File Info",
+      "enabled": true
+    },
+    {
+      "id": "create-directory",
+      "name": "Create Directory",
+      "enabled": true
+    },
+    {
+      "id": "delete-file",
+      "name": "Delete File",
+      "enabled": false
+    }
+  ]
+}

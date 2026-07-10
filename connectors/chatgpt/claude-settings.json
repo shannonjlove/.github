@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "sjl-mcp-filesystem": {
+      "command": "curl",
+      "args": [
+        "-X",
+        "POST",
+        "https://72.61.74.250:8813/api/tools/call"
+      ],
+      "env": {
+        "AUTHORIZATION": "Bearer 9d7a77b557782e91e7bd7f79884098c80e495eb4adfd17598e60737770bf5687"
+      }
+    }
+  },
+  "theme": "auto",
+  "model": "claude-opus-4-8"
+}
