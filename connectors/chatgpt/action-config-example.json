@@ -1,0 +1,297 @@
+{
+  "_comment": "Example ChatGPT Custom Action Configuration for SJL MCP Filesystem",
+  "_instructions": "This is a reference configuration. In ChatGPT UI, manually configure these settings.",
+  "action_config": {
+    "display_name": "SJL MCP Filesystem",
+    "description": "Read and write files through the SJL MCP Filesystem Service with authentication",
+    "category": "Infrastructure",
+    "enabled": true,
+    "api": {
+      "base_url": "https://72.61.74.250:8813",
+      "endpoints": [
+        {
+          "path": "/api/tools/call",
+          "method": "POST",
+          "description": "Call any available MCP tool"
+        }
+      ]
+    },
+    "authentication": {
+      "type": "bearer_token",
+      "header": "Authorization",
+      "scheme": "Bearer",
+      "token_source": "chatgpt_settings",
+      "token_env_var": "SJL_MCP_TOKEN",
+      "bearer_token_value": "{{SJL_MCP_TOKEN}}"
+    },
+    "request_format": {
+      "content_type": "application/json",
+      "timeout_seconds": 30,
+      "body_template": {
+        "jsonrpc": "2.0",
+        "method": "tools/call",
+        "params": {
+          "name": "{{tool_name}}",
+          "arguments": "{{tool_arguments}}"
+        },
+        "id": "{{request_id}}"
+      }
+    },
+    "tools": [
+      {
+        "id": "read_file",
+        "name": "Read File",
+        "description": "Read content from a file",
+        "enabled": true,
+        "write_capable": false,
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "Absolute file path",
+            "required": true,
+            "example": "/home/user/.github/infrastructure/PHASE2_DEPLOY_ALL.sh"
+          },
+          "encoding": {
+            "type": "string",
+            "enum": ["utf-8", "base64"],
+            "default": "utf-8",
+            "required": false
+          },
+          "lines": {
+            "type": "integer",
+            "description": "Return first N lines",
+            "required": false
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Byte offset to start from",
+            "required": false
+          }
+        }
+      },
+      {
+        "id": "write_file",
+        "name": "Write File",
+        "description": "Create or modify a file (WITH WRITE ACCESS)",
+        "enabled": true,
+        "write_capable": true,
+        "requires_confirmation": true,
+        "confirmation_message": "Write file to {path}. This will create or overwrite the file. Continue?",
+        "backup_before_write": true,
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "Absolute file path",
+            "required": true,
+            "example": "/home/user/.github/infrastructure/new-script.sh",
+            "allowed_prefixes": [
+              "/home/user/.github/infrastructure/",
+              "/var/lib/para-codes/",
+              "/var/log/phase2/"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "description": "File content to write",
+            "required": true,
+            "max_length": 52428800
+          },
+          "mode": {
+            "type": "string",
+            "description": "File permissions (octal)",
+            "default": "644",
+            "required": false,
+            "examples": ["644", "755", "755"]
+          },
+          "create_dirs": {
+            "type": "boolean",
+            "description": "Create parent directories",
+            "default": true,
+            "required": false
+          },
+          "backup_existing": {
+            "type": "boolean",
+            "description": "Backup before overwrite",
+            "default": true,
+            "required": false
+          }
+        }
+      },
+      {
+        "id": "list_directory",
+        "name": "List Directory",
+        "description": "List contents of a directory",
+        "enabled": true,
+        "write_capable": false,
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "Directory path",
+            "required": true,
+            "example": "/home/user/.github/infrastructure/"
+          },
+          "recursive": {
+            "type": "boolean",
+            "description": "List recursively",
+            "default": false,
+            "required": false
+          },
+          "filter": {
+            "type": "string",
+            "description": "Glob pattern",
+            "required": false,
+            "examples": ["*.sh", "*.json", "*.py"]
+          },
+          "include_hidden": {
+            "type": "boolean",
+            "description": "Include hidden files",
+            "default": false,
+            "required": false
+          }
+        }
+      },
+      {
+        "id": "search_files",
+        "name": "Search Files",
+        "description": "Search for files by name or content",
+        "enabled": true,
+        "write_capable": false,
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "Search path",
+            "required": true,
+            "example": "/home/user/.github/infrastructure/"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "Search pattern",
+            "required": true,
+            "examples": ["*.sh", "deploy.*", "config"]
+          },
+          "search_type": {
+            "type": "string",
+            "enum": ["name", "content", "regex"],
+            "default": "name",
+            "required": false
+          },
+          "recursive": {
+            "type": "boolean",
+            "default": true,
+            "required": false
+          }
+        }
+      },
+      {
+        "id": "get_file_info",
+        "name": "Get File Info",
+        "description": "Get file metadata without reading content",
+        "enabled": true,
+        "write_capable": false,
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "File path",
+            "required": true
+          }
+        }
+      },
+      {
+        "id": "delete_file",
+        "name": "Delete File",
+        "description": "Delete a file or directory (DESTRUCTIVE - use with caution)",
+        "enabled": false,
+        "write_capable": true,
+        "requires_confirmation": true,
+        "confirmation_message": "WARNING: Delete {path} permanently? This cannot be undone.",
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "File or directory path",
+            "required": true
+          },
+          "recursive": {
+            "type": "boolean",
+            "description": "Delete recursively",
+            "default": false,
+            "required": false
+          }
+        }
+      },
+      {
+        "id": "create_directory",
+        "name": "Create Directory",
+        "description": "Create a new directory",
+        "enabled": true,
+        "write_capable": true,
+        "parameters": {
+          "path": {
+            "type": "string",
+            "description": "Directory path",
+            "required": true
+          },
+          "mode": {
+            "type": "string",
+            "description": "Directory permissions",
+            "default": "755",
+            "required": false
+          }
+        }
+      }
+    ],
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_hour": 1000,
+      "concurrent_requests": 10,
+      "burst_limit": 100
+    },
+    "error_handling": {
+      "retry_on_failure": true,
+      "max_retries": 3,
+      "retry_backoff_ms": 1000,
+      "retriable_errors": [500, 503, "timeout"]
+    },
+    "logging": {
+      "enabled": true,
+      "log_requests": false,
+      "log_tokens": false,
+      "log_responses": true,
+      "log_errors": true
+    },
+    "security": {
+      "verify_ssl": true,
+      "require_https": true,
+      "token_rotation_days": 90,
+      "audit_log_enabled": true,
+      "allowed_paths": [
+        "/home/user/.github/infrastructure/",
+        "/var/lib/para-codes/",
+        "/var/log/phase2/"
+      ],
+      "blocked_paths": [
+        "/etc/",
+        "/root/",
+        "/sys/",
+        "/proc/"
+      ]
+    }
+  },
+  "setup_steps": [
+    "1. Go to ChatGPT Settings → Developer Settings → Custom Actions",
+    "2. Click 'Create new action'",
+    "3. Enter Name: 'SJL MCP Filesystem'",
+    "4. Enter Description: 'Model Context Protocol filesystem service'",
+    "5. Set Authentication Type: Bearer Token",
+    "6. Enter Bearer Token from infrastructure team",
+    "7. Set Base URL: https://72.61.74.250:8813",
+    "8. Import the OpenAPI schema from openapi-schema.json",
+    "9. Test connection with a read operation",
+    "10. Enable write operations after testing"
+  ],
+  "testing_commands": [
+    "List files: 'List /home/user/.github/infrastructure/'",
+    "Read file: 'Read /home/user/.github/infrastructure/PHASE2_DEPLOY_ALL.sh'",
+    "Create file: 'Create a test file at /home/user/.github/infrastructure/test.txt with content: Hello World'",
+    "Search: 'Find all shell scripts in /home/user/.github/infrastructure/'"
+  ]
+}
