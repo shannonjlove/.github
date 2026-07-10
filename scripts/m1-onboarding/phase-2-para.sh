@@ -89,17 +89,26 @@ if [ ! -f "$PARA_ROOT/README.md" ]; then
     cat > "$PARA_ROOT/README.md" << 'EOF'
 # PARA System - Manual Version 8
 
-This is your personal knowledge management system using the PARA method:
+This is your personal knowledge management system using the PARA method with six-digit code tracking:
 
-- **1-PROJECTS/** - Active projects (time-bound, specific outcomes)
+- **1-PROJECTS/** - Active projects with six-digit codes (time-bound, specific outcomes)
 - **2-AREAS/** - Ongoing areas of responsibility (roles, skills, interests)
 - **3-RESOURCES/** - Reference materials and information
-- **4-ARCHIVE/** - Completed projects and old materials
-- **0-SYSTEM/** - Meta files, templates, and system documentation
+- **4-ARCHIVE/** - Completed projects and old materials, organized by code
+- **0-SYSTEM/** - Meta files, templates, code registry, and system documentation
+
+## Six-Digit Code System
+
+All projects and areas have unique codes for systematic organization and reference.
+
+**View codes**: `0-SYSTEM/CODE-REGISTRY.md`
+
+**Format**: `[XXXXXX]-project-name/` or `code###-area-name/`
 
 ## Quick Start
 
-View the Manual v8 guide: `0-SYSTEM/MANUAL-V8.md`
+1. View the Manual v8 guide: `0-SYSTEM/MANUAL-V8.md`
+2. Check project codes: `0-SYSTEM/CODE-REGISTRY.md`
 
 ## Git Workflow
 
@@ -128,12 +137,76 @@ EOF
     echo -e "${GREEN}✓ README.md created${NC}"
 fi
 
+# Create project codes registry
+if [ ! -f "$PARA_ROOT/0-SYSTEM/CODE-REGISTRY.md" ]; then
+    cat > "$PARA_ROOT/0-SYSTEM/CODE-REGISTRY.md" << 'EOF'
+# Six-Digit Code Registry
+
+Reference system for all projects, areas, and major initiatives.
+
+## Format: XXXXXX
+
+Each code is a unique six-digit identifier for systematic organization.
+
+### Project Codes (1-PROJECTS/)
+```
+mx9y96  - MacBook M1 Onboarding
+```
+
+### Area Codes (2-AREAS/)
+```
+dev001  - Development & AI
+inf002  - Infrastructure & Cloud
+knw003  - Personal Knowledge
+wrt004  - Writing & Documentation
+hlth005 - Health & Fitness
+```
+
+### Archive Codes (4-ARCHIVE/)
+```
+ar2601  - 2026-Q1 Completed
+ar2602  - 2026-Q2 Completed
+```
+
+---
+
+Usage: Prefix folders with [CODE] or reference in README
+Example: `1-PROJECTS/[mx9y96]-macbook-m1-onboarding/`
+EOF
+    echo -e "${GREEN}✓ Code registry created${NC}"
+fi
+
 # Create MANUAL-V8.md template
 if [ ! -f "$PARA_ROOT/0-SYSTEM/MANUAL-V8.md" ]; then
     cat > "$PARA_ROOT/0-SYSTEM/MANUAL-V8.md" << 'EOF'
 # PARA Manual - Version 8
 
 Complete guide to your personal knowledge system.
+
+## Six-Digit Code System
+
+All projects, areas, and major initiatives have unique six-digit codes for systematic reference.
+
+**Format**: `XXXXXX` (alphanumeric)
+
+**Usage**:
+- Projects: `[CODE]-project-name/`
+- Areas: Reference in area header
+- Archives: `[CODE]-description/`
+
+**Example**:
+```
+1-PROJECTS/
+├── [mx9y96]-macbook-m1-onboarding/
+├── [pr0801]-claude-memory-upgrade/
+└── [pr0802]-github-integration/
+
+2-AREAS/
+├── dev001-development-ai/
+└── inf002-infrastructure-cloud/
+```
+
+See `0-SYSTEM/CODE-REGISTRY.md` for your code assignments.
 
 ## The Four Categories
 
@@ -256,13 +329,23 @@ git push origin main
 ## Project Lifecycle
 
 ### Starting a Project
-1. Create folder: `1-PROJECTS/project-name/`
-2. Create `README.md` with:
-   - Project name and goal
-   - Key outcomes
-   - Timeline
+1. Assign six-digit code from `CODE-REGISTRY.md`
+2. Create folder: `1-PROJECTS/[CODE]-project-name/`
+3. Create `README.md` with:
+   - Project code and name
+   - Goal and outcomes
+   - Timeline and status
    - Resources needed
-3. Add to git: `git add 1-PROJECTS/project-name/`
+4. Add to git: `git add 1-PROJECTS/[CODE]-project-name/`
+
+**Example**:
+```
+# Project: MacBook M1 Onboarding
+Code: mx9y96
+Goal: Complete M1 setup with PARA system and Claude integration
+Timeline: 2 weeks
+Status: In Progress
+```
 
 ### During Project
 - Update status in README.md
