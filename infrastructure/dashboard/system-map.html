@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS System Architecture Map</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .legend-box {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 2px solid;
+        }
+
+        .legend-box.service {
+            background: rgba(100, 200, 255, 0.3);
+            border-color: #64c8ff;
+        }
+
+        .legend-box.container {
+            background: rgba(200, 100, 255, 0.3);
+            border-color: #c864ff;
+        }
+
+        .legend-box.external {
+            background: rgba(100, 255, 150, 0.3);
+            border-color: #64ff96;
+        }
+
+        .legend-box.client {
+            background: rgba(255, 200, 100, 0.3);
+            border-color: #ffc864;
+        }
+
+        .system-map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00d9ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: #00d9ff;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .service-item {
+            background: rgba(100, 150, 255, 0.1);
+            border: 1px solid #4a6fff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            background: rgba(100, 150, 255, 0.2);
+            box-shadow: 0 0 15px rgba(100, 150, 255, 0.3);
+            transform: translateX(4px);
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: #64c8ff;
+            margin-bottom: 4px;
+        }
+
+        .service-port {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .service-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .service-link {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(0, 217, 255, 0.2);
+            border: 1px solid #00d9ff;
+            border-radius: 4px;
+            color: #00d9ff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .service-link:hover {
+            background: rgba(0, 217, 255, 0.4);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        .container-item {
+            background: rgba(200, 100, 255, 0.1);
+            border: 1px solid #c864ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .container-item:hover {
+            background: rgba(200, 100, 255, 0.2);
+            box-shadow: 0 0 15px rgba(200, 100, 255, 0.3);
+        }
+
+        .external-item {
+            background: rgba(100, 255, 150, 0.1);
+            border: 1px solid #64ff96;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .external-item:hover {
+            background: rgba(100, 255, 150, 0.2);
+            box-shadow: 0 0 15px rgba(100, 255, 150, 0.3);
+        }
+
+        .client-item {
+            background: rgba(255, 200, 100, 0.1);
+            border: 1px solid #ffc864;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .client-item:hover {
+            background: rgba(255, 200, 100, 0.2);
+            box-shadow: 0 0 15px rgba(255, 200, 100, 0.3);
+        }
+
+        .connection-flow {
+            grid-column: 1 / -1;
+            border: 2px dashed #444;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .flow-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #64ff96;
+            margin-bottom: 15px;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            font-size: 12px;
+        }
+
+        .flow-step {
+            background: rgba(100, 255, 150, 0.2);
+            border: 1px solid #64ff96;
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: #64ff96;
+            font-weight: 600;
+        }
+
+        .flow-arrow {
+            color: #888;
+            font-weight: bold;
+        }
+
+        .network-info {
+            grid-column: 1 / -1;
+            border: 2px solid #ff6b6b;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .network-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .network-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .network-table th {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #444;
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .network-table td {
+            padding: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .network-table tr:hover {
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .ip-address {
+            font-family: 'Courier New', monospace;
+            color: #00d9ff;
+        }
+
+        .status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff00;
+            margin-right: 6px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .credentials {
+            grid-column: 1 / -1;
+            border: 2px solid #ffc864;
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .credentials-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffc864;
+            margin-bottom: 15px;
+        }
+
+        .credential-item {
+            background: rgba(255, 200, 100, 0.05);
+            border: 1px solid #666;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .credential-key {
+            color: #ffc864;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .system-map {
+                grid-template-columns: 1fr;
+            }
+
+            .legend {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏗️ VPS System Architecture Map</h1>
+            <p class="subtitle">Complete infrastructure overview with live links</p>
+            <p style="color: #888; margin-top: 10px;">VPS Host: <span style="color: #00d9ff;">72.61.74.250</span> | Domain: <span style="color: #64ff96;">shannonjlove.cloud</span></p>
+        </header>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box service"></div>
+                <span>Services</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box container"></div>
+                <span>Containers</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box external"></div>
+                <span>External</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box client"></div>
+                <span>Clients</span>
+            </div>
+        </div>
+
+        <div class="system-map">
+            <!-- VPS Core Services -->
+            <div class="section">
+                <div class="section-title">🖥️ Core Services</div>
+
+                <div class="service-item">
+                    <div class="service-name">Remote Executor</div>
+                    <div class="service-port">Port 8813 • HTTP</div>
+                    <div class="service-links">
+                        <a href="http://72.61.74.250:8813" target="_blank" class="service-link">Health Check</a>
+                        <a href="http://72.61.74.250:8813/health" target="_blank" class="service-link">Status</a>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">Bookstack</div>
+                    <div class="service-port">Port 8000 • HTTP</div>
+                    <div class="service-links">
+                        <a href="http://72.61.74.250:8000" target="_blank" class="service-link">📖 Open</a>
+                        <a href="http://72.61.74.250:8000/api" target="_blank" class="service-link">API</a>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">Paperless-NGX</div>
+                    <div class="service-port">Port 8080 • HTTP</div>
+                    <div class="service-links">
+                        <a href="http://72.61.74.250:8080" target="_blank" class="service-link">📰 Open</a>
+                        <a href="http://72.61.74.250:8080/api" target="_blank" class="service-link">API</a>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">SJL-MCP Server</div>
+                    <div class="service-port">Port 8811 • HTTP</div>
+                    <div class="service-links">
+                        <a href="http://72.61.74.250:8811" target="_blank" class="service-link">Check</a>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">WebSocket Server</div>
+                    <div class="service-port">Port 9000 • WebSocket</div>
+                    <div class="service-links">
+                        <a href="ws://72.61.74.250:9000" target="_blank" class="service-link">Connect</a>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-name">Dashboard</div>
+                    <div class="service-port">Port 8000 • HTTP</div>
+                    <div class="service-links">
+                        <a href="http://72.61.74.250:8000/dashboard/" target="_blank" class="service-link">📊 View</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Containers -->
+            <div class="section">
+                <div class="section-title">🐳 Containers</div>
+
+                <div class="container-item">
+                    <div class="service-name">Bookstack</div>
+                    <div class="service-port">MySQL + PHP-FPM</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Status: <span class="status"></span> <span style="color: #00ff00;">Running</span>
+                    </div>
+                </div>
+
+                <div class="container-item">
+                    <div class="service-name">Paperless-NGX</div>
+                    <div class="service-port">Django + PostgreSQL</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Status: <span class="status"></span> <span style="color: #00ff00;">Running</span>
+                    </div>
+                </div>
+
+                <div class="container-item">
+                    <div class="service-name">Redis Cache</div>
+                    <div class="service-port">Port 6379 (Internal)</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Status: <span class="status"></span> <span style="color: #00ff00;">Running</span>
+                    </div>
+                </div>
+
+                <div class="container-item">
+                    <div class="service-name">Remote Executor</div>
+                    <div class="service-port">Python HTTP Server</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Status: <span class="status"></span> <span style="color: #00ff00;">Running</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- External Services -->
+            <div class="section">
+                <div class="section-title">🌐 External Services</div>
+
+                <div class="external-item">
+                    <div class="service-name">Twilio SMS</div>
+                    <div class="service-port">+1.718.208.3290</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        SMS notifications for alerts
+                    </div>
+                </div>
+
+                <div class="external-item">
+                    <div class="service-name">Backblaze B2</div>
+                    <div class="service-port">api.backblazeb2.com</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Cloud backup storage
+                    </div>
+                </div>
+
+                <div class="external-item">
+                    <div class="service-name">1Password Vault</div>
+                    <div class="service-port">Credential Management</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Encrypted secret storage
+                    </div>
+                </div>
+
+                <div class="external-item">
+                    <div class="service-name">Tailscale VPN</div>
+                    <div class="service-port">100.x.x.x/24</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Private network access
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clients -->
+            <div class="section">
+                <div class="section-title">📱 Client Devices</div>
+
+                <div class="client-item">
+                    <div class="service-name">Desktop / Server</div>
+                    <div class="service-port">Claude Code Remote</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Full system access via APIs
+                    </div>
+                </div>
+
+                <div class="client-item">
+                    <div class="service-name">iPhone / iPad</div>
+                    <div class="service-port">Scriptable + Shortcuts</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        File operations, PDF processing
+                    </div>
+                </div>
+
+                <div class="client-item">
+                    <div class="service-name">Browser</div>
+                    <div class="service-port">Dashboard + Monitoring</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Real-time system metrics
+                    </div>
+                </div>
+
+                <div class="client-item">
+                    <div class="service-name">Mobile Phone</div>
+                    <div class="service-port">SMS Notifications</div>
+                    <div style="font-size: 11px; color: #888; margin-top: 8px;">
+                        Alert messages from Twilio
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Flow -->
+            <div class="connection-flow">
+                <div class="flow-title">🔄 Event Flow Architecture</div>
+
+                <div class="flow-diagram">
+                    <span class="flow-step">User Action</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">Remote Executor</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">Event Logger</span>
+                </div>
+
+                <div class="flow-diagram">
+                    <span class="flow-step">Event Logged</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">Bookstack</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">WebSocket</span>
+                </div>
+
+                <div class="flow-diagram">
+                    <span class="flow-step">WebSocket</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">Dashboard UI</span>
+                    <span class="flow-arrow">→</span>
+                    <span class="flow-step">SMS Alert</span>
+                </div>
+
+                <div style="font-size: 11px; color: #888; margin-top: 15px; padding-top: 15px; border-top: 1px solid #444;">
+                    All operations flow through the Remote Executor API (port 8813), are logged to Bookstack, broadcast via WebSocket, and trigger SMS notifications for critical events.
+                </div>
+            </div>
+
+            <!-- Network Information -->
+            <div class="network-info">
+                <div class="network-title">🌐 Network Configuration</div>
+
+                <table class="network-table">
+                    <thead>
+                        <tr>
+                            <th>Interface</th>
+                            <th>IP Address</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Primary (Public)</td>
+                            <td class="ip-address">72.61.74.250</td>
+                            <td>VPS Host / Service Access</td>
+                        </tr>
+                        <tr>
+                            <td>Tailscale VPN</td>
+                            <td class="ip-address">100.x.x.x</td>
+                            <td>Private network access</td>
+                        </tr>
+                        <tr>
+                            <td>Docker Internal</td>
+                            <td class="ip-address">172.17.0.0/16</td>
+                            <td>Container networking</td>
+                        </tr>
+                        <tr>
+                            <td>Domain</td>
+                            <td class="ip-address">shannonjlove.cloud</td>
+                            <td>HTTPS / Public access</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Credentials -->
+            <div class="credentials">
+                <div class="credentials-title">🔐 Credential Management</div>
+
+                <div style="font-size: 12px; color: #888; margin-bottom: 15px;">
+                    All credentials stored securely in 1Password "Infrastructure" vault. Use helper scripts to access:
+                </div>
+
+                <div class="credential-item">
+                    <span class="credential-key">Twilio:</span> eval "$(get-twilio-creds)"
+                </div>
+
+                <div class="credential-item">
+                    <span class="credential-key">Bookstack:</span> eval "$(get-bookstack-creds)"
+                </div>
+
+                <div class="credential-item">
+                    <span class="credential-key">Paperless:</span> eval "$(get-paperless-creds)"
+                </div>
+
+                <div class="credential-item">
+                    <span class="credential-key">All:</span> eval "$(load-1password-env)"
+                </div>
+
+                <div class="credential-item">
+                    <span class="credential-key">Single:</span> get-secret Infrastructure [vault] [field]
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>🔒 All services secured | 🚀 Ready for production | ✅ Fully automated</p>
+            <p style="margin-top: 10px;">Last updated: 2026-01-15 | System Status: All Green</p>
+            <p style="margin-top: 10px; font-size: 10px; color: #555;">
+                <a href="/dashboard/" style="color: #00d9ff; text-decoration: none;">→ View Live Dashboard</a> |
+                <a href="/api" style="color: #00d9ff; text-decoration: none;">→ API Docs</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

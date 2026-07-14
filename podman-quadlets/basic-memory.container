@@ -1,0 +1,30 @@
+[Unit]
+Description=Basic Memory - MCP Memory Service
+Documentation=https://github.com/modelcontextprotocol/servers
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/modelcontextprotocol/basic-memory:latest
+ContainerName=basic-memory
+PublishPort=127.0.0.1:3002:3002
+Volume=/var/podman/basic-memory/data:/app/data
+Networks=app-net
+EnvironmentFile=/etc/podman/secrets/basic-memory.env
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:3002/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

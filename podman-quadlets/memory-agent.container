@@ -1,0 +1,32 @@
+[Unit]
+Description=Memory Agent - Long-term Memory & Context Management
+Documentation=https://github.com/shannonjlove/memory-agent
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/shannonjlove/memory-agent:latest
+ContainerName=memory-agent
+PublishPort=127.0.0.1:8812:8812
+Volume=/var/podman/memory-agent/data:/app/data
+Volume=/var/podman/memory-agent/config:/app/config
+Networks=app-net
+EnvironmentFile=/etc/podman/secrets/memory-agent.env
+Environment=AGENT_PORT=8812
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:8812/health || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

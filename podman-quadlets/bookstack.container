@@ -1,0 +1,31 @@
+[Unit]
+Description=BookStack - Documentation & Knowledge Base
+Documentation=https://www.bookstackapp.com/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=lscr.io/linuxserver/bookstack:latest
+ContainerName=bookstack
+PublishPort=127.0.0.1:6875:80
+Volume=/var/podman/bookstack/config:/config
+Volume=/var/podman/bookstack/data:/var/www/html/storage/uploads
+Networks=app-net
+EnvironmentFile=/etc/podman/secrets/bookstack.env
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:80/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

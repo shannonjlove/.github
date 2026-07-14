@@ -1,0 +1,30 @@
+[Unit]
+Description=MCP Filesystem - Model Context Protocol Filesystem Service
+Documentation=https://modelcontextprotocol.io/
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/modelcontextprotocol/filesystem:latest
+ContainerName=mcp-filesystem
+PublishPort=127.0.0.1:3001:3001
+Volume=/var/podman/mcp-filesystem/config:/app/config
+Networks=app-net
+EnvironmentFile=/etc/podman/secrets/mcp-filesystem.env
+Environment=TZ=UTC
+HealthCheck=curl -f http://localhost:3001/ || exit 1
+HealthCheckInterval=30s
+HealthCheckTimeout=3s
+HealthCheckStartPeriod=10s
+HealthCheckRetries=3
+AutoUpdate=registry
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+TimeoutStartSec=120
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
