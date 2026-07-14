@@ -6,6 +6,7 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import fs from 'fs';
+import fsPromises from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -54,9 +55,22 @@ class EnhancedFilesystemServer {
   log(level, message, data = {}) {
     const timestamp = new Date().toISOString();
     const logEntry = { timestamp, level, message, uptime: Date.now() - this.startTime, requestCount: this.requestCount, ...data };
-    fs.appendFileSync(LOG_FILE, JSON.stringify(logEntry) + '\n');
+    try {
+      fs.appendFileSync(LOG_FILE, JSON.stringify(logEntry) + '\n');
+    } catch (err) {
+      console.error('[ERROR] Failed to write to log file: ' + err.message);
+    }
     const logStr = `[${timestamp}] [${level}] ${message}`;
     console.error(Object.keys(data).length > 0 ? logStr + ' ' + JSON.stringify(data) : logStr);
+  }
+
+  safeResolve(unsafePath) {
+    const allowedRoot = process.env.ALLOWED_ROOT || '/opt/sjl-mcp';
+    const resolvedPath = path.resolve(allowedRoot, unsafePath);
+    if (!resolvedPath.startsWith(allowedRoot + path.sep) && resolvedPath !== allowedRoot) {
+      throw new Error('Access denied: Path traversal detected');
+    }
+    return resolvedPath;
   }
 
   async start() {
@@ -110,34 +124,37 @@ class EnhancedFilesystemServer {
 
   async handleReadFile(args) {
     const { path: filePath, encoding = 'utf-8', lines, offset } = args;
-    let content = fs.readFileSync(filePath, encoding);
+    const safePath = this.safeResolve(filePath);
+    let content = await fsPromises.readFile(safePath, encoding);
     if (lines) content = content.split('\n').slice(0, lines).join('\n');
     if (offset) content = content.slice(offset);
-    this.log('info', 'File read successfully', { path: filePath, size: content.length });
+    this.log('info', 'File read successfully', { path: safePath, size: content.length });
     return { content: [{ type: 'text', text: content }] };
   }
 
   async handleWriteFile(args) {
     const { path: filePath, content, mode = '644', create_dirs = false, backup_existing = false } = args;
-    const dir = path.dirname(filePath);
-    if (create_dirs && !fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    if (backup_existing && fs.existsSync(filePath)) {
-      const backupPath = `${filePath}.backup-${Date.now()}`;
-      fs.copyFileSync(filePath, backupPath);
+    const safePath = this.safeResolve(filePath);
+    const dir = path.dirname(safePath);
+    if (create_dirs && !fs.existsSync(dir)) await fsPromises.mkdir(dir, { recursive: true });
+    if (backup_existing && fs.existsSync(safePath)) {
+      const backupPath = `${safePath}.backup-${Date.now()}`;
+      await fsPromises.copyFile(safePath, backupPath);
       this.log('info', 'File backed up', { backup: backupPath });
     }
-    fs.writeFileSync(filePath, content, 'utf-8');
-    fs.chmodSync(filePath, parseInt(mode, 8));
-    this.log('info', 'File written successfully', { path: filePath, size: content.length });
-    return { content: [{ type: 'text', text: `File written successfully: ${filePath}` }] };
+    await fsPromises.writeFile(safePath, content, 'utf-8');
+    await fsPromises.chmod(safePath, parseInt(mode, 8));
+    this.log('info', 'File written successfully', { path: safePath, size: content.length });
+    return { content: [{ type: 'text', text: `File written successfully: ${safePath}` }] };
   }
 
   async handleListDirectory(args) {
     const { path: dirPath, recursive = false, filter } = args;
-    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    const safePath = this.safeResolve(dirPath);
+    const entries = await fsPromises.readdir(safePath, { withFileTypes: true });
     const result = entries.map(entry => ({ name: entry.name, type: entry.isDirectory() ? 'directory' : 'file' }))
       .filter(entry => !filter || entry.name.match(filter));
-    this.log('info', 'Directory listed', { path: dirPath, count: result.length });
+    this.log('info', 'Directory listed', { path: safePath, count: result.length });
     return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
   }
 

@@ -5,7 +5,8 @@ Documentation=https://github.com/shannonjlove/.github
 
 [Service]
 Type=simple
-User=root
+User=mcp
+Group=mcp
 WorkingDirectory=/opt/sjl-mcp
 ExecStart=/usr/bin/node /opt/sjl-mcp/enhanced-filesystem-server.js
 Restart=on-failure
