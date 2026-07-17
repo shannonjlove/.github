@@ -1,0 +1,31 @@
+[Unit]
+Description=SJL MCP Filesystem Server (Enhanced)
+After=network.target
+Documentation=https://github.com/shannonjlove/.github
+
+[Service]
+Type=simple
+User=mcp
+Group=mcp
+WorkingDirectory=/opt/sjl-mcp
+ExecStart=/usr/bin/node /opt/sjl-mcp/enhanced-filesystem-server.js
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=3
+
+# Environment
+Environment="NODE_OPTIONS=--max-old-space-size=512 --unhandled-rejections=strict"
+Environment="LOG_DIR=/var/log/sjl-mcp"
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sjl-mcp
+
+[Install]
+WantedBy=multi-user.target
