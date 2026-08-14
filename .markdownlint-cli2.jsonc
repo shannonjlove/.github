@@ -1,0 +1,18 @@
+{
+  // Lint config for the GitHub profile README.
+  // GitHub profile READMEs intentionally use inline HTML (badges/images),
+  // hard line breaks, decorative emoji, and long marketing lines, so the
+  // corresponding stylistic rules are relaxed here.
+  "config": {
+    "default": true,
+    "MD013": false, // line length: marketing copy has long lines
+    "MD033": false, // inline HTML: shields.io badges / <img> are expected
+    "MD041": false, // first line heading: allow badges/HTML before H1 if added later
+    "MD009": false, // trailing spaces: used intentionally for hard line breaks
+    "MD012": false, // multiple blank lines: decorative spacing in marketing copy
+    "MD060": false, // table column style: compact pipes are fine, cosmetic only
+    "MD024": { "siblings_only": true } // allow repeated headings in different sections
+  },
+  "globs": ["profile/**/*.md"],
+  "ignores": ["node_modules", "dist"]
+}

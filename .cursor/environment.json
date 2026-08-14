@@ -1,0 +1,11 @@
+{
+  "name": "Profile README preview",
+  "install": "npm ci",
+  "terminals": [
+    {
+      "name": "preview",
+      "command": "npm run preview"
+    }
+  ],
+  "ports": [4173]
+}

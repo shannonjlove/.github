@@ -1,0 +1,19 @@
+{
+  "name": "github-profile-readme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tooling to lint and preview the GitHub profile README (profile/README.md).",
+  "type": "module",
+  "scripts": {
+    "lint": "markdownlint-cli2 \"profile/**/*.md\"",
+    "build": "node scripts/build-preview.mjs",
+    "preview": "npm run build && node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "github-markdown-css": "^5.8.1",
+    "markdownlint-cli2": "^0.23.2",
+    "marked": "^16.4.0",
+    "marked-gfm-heading-id": "^4.1.1"
+  }
+}
