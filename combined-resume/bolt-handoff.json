@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "projectName": "Shannon J Love — Combined Executive Resume",
+    "deployTarget": "resume.shannonjeffreylove.com",
+    "designSystem": "Dark Editorial Luxury",
+    "stack": "React + Vite + TypeScript + Tailwind CSS v4",
+    "version": "2026-08-22"
+  },
+  "identity": {
+    "name": "Shannon J. Love",
+    "gender": "male",
+    "pronouns": "he/him",
+    "pronounRule": "Always he/him/his in third-person copy. Never she/her.",
+    "title": "Creative Problem Solver · Executive Producer · Writer · Showrunner",
+    "location": "Brooklyn, NY",
+    "email": "sjlove@shannonjeffreylove.com",
+    "phone": "718-208-3290",
+    "tagline": "Uniquely crafting our experiences into the stories that allow history to aptly depict what it truly meant to be human.",
+    "summary": "25+ years transforming raw human experience into culture-shaping television, film, editorial, and digital media. From TV One's first $1M+ reality franchise and BET's flagship news desk to VH1's award-winning story arcs, Goldman Sachs impact campaigns, and pandemic-era public-health PSAs — I architect stories that ship: pitch to greenlight, control room to broadcast, blank page to published essay.",
+    "linkedin": "https://www.linkedin.com/in/shannonjlove-wonderfullymade/",
+    "imdb": "https://www.imdb.com/name/nm1654311/",
+    "medium": "https://medium.com/@shannonjeffreylove"
+  },
+  "design": {
+    "background": "#0F172A",
+    "cardBackground": "#1E293B",
+    "accentGold": "#C5A059",
+    "accentGoldLight": "#F1D592",
+    "bodyText": "#E2E8F0",
+    "mutedText": "#94A3B8",
+    "headlineFont": "Playfair Display",
+    "bodyFont": "Inter",
+    "visualRules": [
+      "NO stock photos, AI portraits, or headshots",
+      "ONLY official YouTube thumbnails: https://img.youtube.com/vi/{VIDEO_ID}/hqdefault.jpg",
+      "Each thumbnail must link to its source YouTube video"
+    ]
+  },
+  "hero": {
+    "primaryReelVideoId": "bWZ3ENgZyhI",
+    "primaryReelUrl": "https://www.youtube.com/watch?v=bWZ3ENgZyhI",
+    "alternateReelVideoId": "TiNkR4_L0KM",
+    "alternateReelUrl": "https://www.youtube.com/watch?v=TiNkR4_L0KM",
+    "heroBehavior": "Show YouTube thumbnail; click loads embed with autoplay"
+  },
+  "stats": [
+    { "value": "25+", "label": "Years" },
+    { "value": "$1M+", "label": "Budgets Led" },
+    { "value": "100+", "label": "Live Broadcasts" },
+    { "value": "8", "label": "Major Networks" }
+  ],
+  "networkMarquee": [
+    "TV ONE", "VH1", "BET", "MTV", "BRAVO", "CMT", "HGTV", "GOLDMAN SACHS", "ROCK THE BELLS"
+  ],
+  "representativeWorkSamples": [
+    { "title": "Shannon J Love Highlight Reel", "network": "Showcase", "role": "Executive Producer · Writer · Director", "proof": "Curated sizzle across 25 years of network and branded work.", "youtubeUrl": "https://www.youtube.com/watch?v=bWZ3ENgZyhI", "videoId": "bWZ3ENgZyhI", "featured": true },
+    { "title": "The Truth With Jeff Johnson", "network": "BET", "role": "Supervising Producer", "proof": "Flagship news program — culture, politics, community.", "youtubeUrl": "https://www.youtube.com/watch?v=4FcOwmbnbbE", "videoId": "4FcOwmbnbbE" },
+    { "title": "Monica Still Standing", "network": "BET", "role": "Assistant Director", "proof": "8-episode docuseries following Grammy-winning artist Monica.", "youtubeUrl": "https://www.youtube.com/watch?v=ze4crC3Kgxk", "videoId": "ze4crC3Kgxk" },
+    { "title": "Bounce Back Stories — Earl Cox", "network": "Branded", "role": "Producer · Editor", "proof": "Lynnette Khalfani-Cox book launch campaign.", "youtubeUrl": "https://www.youtube.com/watch?v=oFSsrLH0XAY", "videoId": "oFSsrLH0XAY" },
+    { "title": "Power of You Teens Promo", "network": "Non-Profit", "role": "Producer", "proof": "Youth empowerment organization promo.", "youtubeUrl": "https://www.youtube.com/watch?v=XXTGyWtVUYs", "videoId": "XXTGyWtVUYs" },
+    { "title": "Shannon's Highlight Reel", "network": "Showcase", "role": "Executive Producer · Writer · Director", "proof": "Alternate highlight reel cut.", "youtubeUrl": "https://www.youtube.com/watch?v=TiNkR4_L0KM", "videoId": "TiNkR4_L0KM" },
+    { "title": "One Million Black Women", "network": "Goldman Sachs", "role": "Segment Producer", "proof": "$10B initiative · Directed by Reginald Hudlin.", "youtubeUrl": "https://www.youtube.com/watch?v=D_nwXaYF7Oo", "videoId": "D_nwXaYF7Oo" },
+    { "title": "Girls Cruise Promo", "network": "VH1", "role": "Story Producer", "proof": "Best Entertainment Show — National Film & TV Awards · Vogue, Glamour.", "youtubeUrl": "https://www.youtube.com/watch?v=icD-4qEpu_E", "videoId": "icD-4qEpu_E" },
+    { "title": "Famous People — Taj", "network": "TV One", "role": "Producer", "proof": "Celebrity profile special featuring Taj Johnson-George (SWV).", "youtubeUrl": "https://www.youtube.com/watch?v=uXhoqgSjHQU", "videoId": "uXhoqgSjHQU" },
+    { "title": "I Married a Baller", "network": "TV One", "role": "Creator · Showrunner · EP · Writer · Director", "proof": "Network's first $1M reality series · Entertainment Weekly featured.", "youtubeUrl": "https://www.youtube.com/watch?v=IQs4N6SUoSk", "videoId": "IQs4N6SUoSk" },
+    { "title": "Hip Hop vs America", "network": "BET", "role": "Producer", "proof": "Cultural debate special examining hip-hop's impact on America.", "youtubeUrl": "https://www.youtube.com/watch?v=ToON_QY-nGM", "videoId": "ToON_QY-nGM" },
+    { "title": "Million More Movement", "network": "BET", "role": "Producer", "proof": "Documentary covering the Million More Movement.", "youtubeUrl": "https://www.youtube.com/watch?v=BgFjNj9M7ko", "videoId": "BgFjNj9M7ko" },
+    { "title": "The Truth Series", "network": "BET", "role": "Supervising Producer", "proof": "Extended news and current-events programming.", "youtubeUrl": "https://www.youtube.com/watch?v=0DCogG7PJCY", "videoId": "0DCogG7PJCY" },
+    { "title": "Graphic Open Montage", "network": "Branded", "role": "Producer · Editor", "proof": "Graphic open montage adopted across multiple promotional rollouts.", "youtubeUrl": "https://www.youtube.com/watch?v=a_TtlGbu6aQ", "videoId": "a_TtlGbu6aQ" }
+  ],
+  "writingSamples": [
+    { "title": "Jaha Howard for Georgia State Senate, District 6", "category": "Political Copy", "description": "Three campaign video spots for Dr. Jaha Howard.", "url": "https://writingsamples.shannonjeffreylove.com/samples/jaha-howard-political-spots" },
+    { "title": "NYC COVID-19 Vaccination Promos", "category": "PSA / Public Health", "description": "Three-spot public service campaign for Birds Eye View Productions.", "url": "https://writingsamples.shannonjeffreylove.com/samples/nyc-covid-vaccination-psa" },
+    { "title": "Love, Let Live, Or Leave It / Lose It", "category": "Long-Form Essay", "description": "Signature personal essay on time, value, and relationships.", "url": "https://writingsamples.shannonjeffreylove.com/samples/one-relationship-test-essay" },
+    { "title": "NYPD Commendation Letter", "category": "Civic Correspondence", "description": "Open letter commending Officers Sneed, Chavarria, and Morales.", "url": "https://writingsamples.shannonjeffreylove.com/samples/nypd-commendation-letter" },
+    { "title": "Girls Cruise (VH1) Pickup Episodes", "category": "TV Treatment", "description": "Pickup-episode treatment — A/B/C story arcs.", "url": "https://writingsamples.shannonjeffreylove.com/samples/girls-cruise-vh1-pickup-treatment" },
+    { "title": "Stage Play, Speechwriting & Community Writing", "category": "Stage & Community", "description": "Stage play, sermons, speeches, civic correspondence, poetry.", "url": "https://writingsamples.shannonjeffreylove.com/samples/stage-play-and-community-writing" }
+  ],
+  "publishedEssays": [
+    { "title": "Pandemic Proliferation: Private Pretense Meets Public Protests", "url": "https://medium.com/@shannonjeffreylove", "platform": "Medium" },
+    { "title": "Dear Coronavirus & COVID-19", "url": "https://medium.com/@shannonjeffreylove", "platform": "Medium" },
+    { "title": "How The NYPD Saved Christmas From The Grinch Who Almost Stole It", "url": "https://medium.com/@shannonjeffreylove", "platform": "Medium" },
+    { "title": "Inkwell — Stories that shape culture", "url": "https://blog.shannonjeffreylove.com", "platform": "Essays" }
+  ],
+  "experience": [
+    { "title": "Creative Director", "company": "Financial Influencer Network (FIN)", "companyUrl": "https://thefinnetwork.com", "period": "2024 – Present", "location": "Remote", "bullets": ["Direct creative strategy across FIN's 4 divisions, activating 30+ vetted financial experts and 10M+ organic reach per launch.", "Lead multidisciplinary teams of 15+ designers, copywriters, art directors, and editors.", "Compress campaign delivery to 2–4 weeks with full SEC-compliance integrity."] },
+    { "title": "Director of Development", "company": "Bird's Eye Entertainment, Inc.", "period": "2016 – Present", "location": "Brooklyn, NY", "bullets": ["Lead original television, documentary, and branded media development for MTV, Bravo, VH1, and corporate clients.", "Created Houston's: Unhindered — docu-series on Gary Michael Houston carrying the Whitney Houston family legacy.", "Manage $100K–$500K budgets; secured 3 pilot orders across 12+ TV/digital projects in 18 months."] },
+    { "title": "Assistant Director — Live Broadcast", "company": "Christian Cultural Center", "companyUrl": "https://www.cccinfo.org/", "period": "2023 – Present", "location": "Brooklyn, NY", "bullets": ["Direct technical operations for 100+ weekly live broadcasts reaching 10,000+ viewers at 99%+ uptime.", "Engineer pro audio (Yamaha CL5/QL5, Shure ULX-D); cut troubleshooting incidents by 35%.", "Coordinate camera coverage, graphics, playback, and segment timing within 30-second accuracy."] },
+    { "title": "Story Producer — Girls Cruise", "company": "Big Fish Entertainment / VH1", "companyUrl": "https://www.vh1.com/shows/girls-cruise", "period": "2019 – 2022", "location": "New York, NY", "bullets": ["Built multi-arc storylines for award-winning series starring Lil' Kim, Mýa, and Chilli.", "Conducted 200+ on-camera interviews across 11 episodes reaching 700K–1.2M viewers each.", "Series won Best Entertainment Show — National Film & TV Awards; featured in Vogue and Glamour."] },
+    { "title": "Producer — MTV True Life", "company": "Hot Snakes Media / MTV", "period": "2018 – 2022", "location": "New York, NY", "bullets": ["Produced True Life: Gun Control across Sandy Hook, Parkland, and Chicago.", "Delivered 25+ episodic projects on Avid Media Composer + Frame.io within 9-month broadcast cycles.", "Managed production budgets up to $250K end-to-end."] },
+    { "title": "Content Producer", "company": "Rock The Bells (LL COOL J)", "companyUrl": "https://rockthebells.com", "period": "2022", "location": "New York, NY", "bullets": ["Produced 30+ short-form digital pieces with real-time post pipeline at live festival events.", "Built workflow preserving Hip-Hop history while championing next-generation artists."] },
+    { "title": "Segment Producer — One Million Black Women", "company": "Alongi Media / Goldman Sachs", "companyUrl": "https://www.goldmansachs.com/our-commitments/sustainability/one-million-black-women", "period": "2021", "location": "New York, NY", "bullets": ["Produced B-roll, portrait videography, and location storytelling for $10B social-impact initiative.", "Executed under direction of Reginald Hudlin."] },
+    { "title": "Supervising Producer — The Truth with Jeff Johnson", "company": "BET Networks / Viacom", "period": "2006 – 2009", "location": "New York, NY", "bullets": ["Supervised teams of 15+ on BET's flagship news program addressing political and cultural issues.", "Directed live and live-to-tape control-room operations; improved efficiency 25%.", "Cleared legal, fair-use, and copyright compliance for every broadcast."] },
+    { "title": "Executive Producer · Showrunner — I Married A Baller", "company": "TV One", "period": "2005 – 2007", "location": "Multi-city (OH · TN · GA · CA)", "bullets": ["Created, wrote, produced, and directed TV One's first $1M+ original reality franchise — 9 episodes.", "Documented SWV's Taj Johnson-George and NFL Hall of Famer Eddie George across a 3-week charity tour.", "Earned Entertainment Weekly coverage (April 20, 2007); anchored TV One's network launch slate."] }
+  ],
+  "expertise": ["Creative Strategy", "Story Architecture", "Showrunning", "Speechwriting", "Live Broadcast", "Branded Content", "SEC-Compliant Marketing", "Post-Production", "AI-Forward Workflows"],
+  "awards": [
+    { "title": "Emmy Credit — MTV: True Life", "detail": "Senior Producer on the Emmy Award–winning True Life franchise." },
+    { "title": "Best Entertainment Show — National Film & TV Awards", "detail": "Girls Cruise (VH1) as Story Producer; featured in Vogue and Glamour." },
+    { "title": "Entertainment Weekly National Feature", "detail": "I Married A Baller (TV One), April 20, 2007." },
+    { "title": "Live Broadcast Operations Excellence", "detail": "Christian Cultural Center — 10,000+ weekly viewers at 99%+ uptime." }
+  ],
+  "education": {
+    "school": "New York University",
+    "degree": "B.A. Political Science & Africana Studies",
+    "honors": "Distinguished Honors Graduate",
+    "year": "2000",
+    "certification": "Trello for Video Post-Production — LinkedIn Learning, 2018"
+  },
+  "ecosystemLinks": [
+    { "label": "resume.shannonjeffreylove.com", "url": "https://resume.shannonjeffreylove.com", "description": "Combined executive resume" },
+    { "label": "shannonj.love", "url": "https://shannonj.love", "description": "Full portfolio + ATS exports" },
+    { "label": "shannonjlove.tv", "url": "https://shannonjlove.tv", "description": "Video reel hub" },
+    { "label": "writingsamples.shannonjeffreylove.com", "url": "https://writingsamples.shannonjeffreylove.com", "description": "Full writing archive" },
+    { "label": "blog.shannonjeffreylove.com", "url": "https://blog.shannonjeffreylove.com", "description": "Inkwell essays" }
+  ],
+  "navigation": [
+    { "id": "about", "label": "About" },
+    { "id": "tv-work", "label": "TV Work" },
+    { "id": "writing", "label": "Writing" },
+    { "id": "experience", "label": "Experience" },
+    { "id": "contact", "label": "Contact" }
+  ],
+  "utilities": {
+    "youtubeThumbnail": "https://img.youtube.com/vi/{VIDEO_ID}/hqdefault.jpg",
+    "youtubeEmbed": "https://www.youtube.com/embed/{VIDEO_ID}?rel=0&autoplay=1"
+  }
+}
