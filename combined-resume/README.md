@@ -23,6 +23,13 @@ Deploy the `dist/` folder to **resume.shannonjeffreylove.com**.
 - **Shannon J. Love is male (he/him).** Never use she/her in copy.
 - **Visuals:** Use only official YouTube video thumbnails (`img.youtube.com/vi/{ID}/hqdefault.jpg`) — no stock photos or portrait headshots.
 
+## Bolt.new handoff
+
+Paste into [bolt.new](https://bolt.new):
+
+- **[BOLT_NEW_HANDOFF.md](./BOLT_NEW_HANDOFF.md)** — copy-paste prompt + checklist
+- **[bolt-handoff.json](./bolt-handoff.json)** — structured JSON data
+
 ## Sections
 
 - Hero with embedded highlight reel
