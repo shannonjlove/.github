@@ -1,0 +1,18 @@
+[submodule "vendor/higgsfield-claude-skills"]
+	path = vendor/higgsfield-claude-skills
+	url = https://github.com/shannonjlove/higgsfield-claude-skills.git
+[submodule "vendor/higgsfield"]
+	path = vendor/higgsfield
+	url = https://github.com/shannonjlove/higgsfield.git
+[submodule "vendor/higgsfield-cli"]
+	path = vendor/higgsfield-cli
+	url = https://github.com/shannonjlove/cli.git
+[submodule "vendor/higgsfield-ai-prompt-skill"]
+	path = vendor/higgsfield-ai-prompt-skill
+	url = https://github.com/shannonjlove/higgsfield-ai-prompt-skill.git
+[submodule "vendor/higgsfield-client"]
+	path = vendor/higgsfield-client
+	url = https://github.com/shannonjlove/higgsfield-client.git
+[submodule "vendor/Open-Higgsfield-AI"]
+	path = vendor/Open-Higgsfield-AI
+	url = https://github.com/shannonjlove/Open-Higgsfield-AI.git

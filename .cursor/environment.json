@@ -1,0 +1,18 @@
+{
+  "name": "higgsfield-ecosystem",
+  "install": "export PATH=\"$HOME/.local/bin:$PATH\" && git submodule update --init --recursive && bash scripts/install-higgsfield-ecosystem.sh",
+  "repositoryDependencies": [
+    "github.com/shannonjlove/higgsfield-claude-skills",
+    "github.com/shannonjlove/higgsfield",
+    "github.com/shannonjlove/cli",
+    "github.com/shannonjlove/higgsfield-ai-prompt-skill",
+    "github.com/shannonjlove/higgsfield-client",
+    "github.com/shannonjlove/Open-Higgsfield-AI"
+  ],
+  "mcpServerAllowlist": [
+    {
+      "name": "higgsfield",
+      "serverUrl": "https://mcp.higgsfield.ai/mcp"
+    }
+  ]
+}
