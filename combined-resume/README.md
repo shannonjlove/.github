@@ -28,7 +28,7 @@ Deploy the `dist/` folder to **resume.shannonjeffreylove.com**.
 Paste into [bolt.new](https://bolt.new):
 
 - **[BOLT_NEW_HANDOFF.md](./BOLT_NEW_HANDOFF.md)** — copy-paste prompt + checklist
-- **[bolt-handoff.json](./bolt-handoff.json)** — structured JSON data
+- **[combined-resume-bolt-handoff.zip](./combined-resume-bolt-handoff.zip)** — full project zip for Bolt upload
 
 ## Sections
 

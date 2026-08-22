@@ -110,13 +110,24 @@ Description: 25+ years crafting culture-defining television, film, and digital s
 
 ---
 
-## Step 2 — Attach structured data (optional)
+## Step 2 — Upload project zip (recommended)
+
+Download **`combined-resume-bolt-handoff.zip`** from this repo (66 KB). It includes:
+
+- Full React + Vite + Tailwind source (`src/`, configs, `index.html`)
+- `BOLT_NEW_HANDOFF.md` + `bolt-handoff.json`
+- `SJL_Professional_Experience_Profile.md` (master LLM profile)
+- Excludes `node_modules/` and `dist/` (run `npm install && npm run dev` after import)
+
+Upload the zip to Bolt.new, then paste the Step 1 prompt to refine or redeploy.
+
+## Step 3 — Attach structured data (optional)
 
 Upload or paste the contents of **`bolt-handoff.json`** into Bolt as reference data. It contains the same content in JSON for programmatic use.
 
 ---
 
-## Step 3 — Reference implementation (already built)
+## Step 4 — Reference implementation (already built)
 
 If Bolt supports importing an existing repo, point it at:
 
