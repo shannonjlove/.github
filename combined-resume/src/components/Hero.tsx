@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { contact, navItems } from "../data/site";
+import { youtubeThumbnail } from "../utils/youtube";
 
 export function Nav() {
   return (
@@ -46,6 +48,9 @@ export function Nav() {
 }
 
 export function Hero() {
+  const [reelPlaying, setReelPlaying] = useState(false);
+  const reelThumbnail = youtubeThumbnail(contact.highlightReelId);
+
   return (
     <header id="top" className="relative overflow-hidden border-b border-[#C5A059]/20 px-6 py-16">
       <div className="pointer-events-none absolute inset-0 opacity-10">
@@ -59,6 +64,9 @@ export function Hero() {
           <span className="gold-gradient">Shannon J. Love</span>
         </h1>
         <p className="mt-4 max-w-3xl text-lg text-slate-300 md:text-xl">{contact.title}</p>
+        <p className="mt-2 text-sm tracking-wide text-slate-500">
+          He/him · Male
+        </p>
 
         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
           <a
@@ -90,13 +98,33 @@ export function Hero() {
 
         <div className="no-print mt-12 overflow-hidden rounded-lg border-2 border-[#C5A059]/40 shadow-2xl">
           <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src={`https://www.youtube.com/embed/${contact.highlightReelId}?rel=0`}
-              title="Shannon J. Love — Highlight Reel"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            {!reelPlaying ? (
+              <button
+                type="button"
+                onClick={() => setReelPlaying(true)}
+                className="group/reel absolute inset-0 h-full w-full cursor-pointer border-0 p-0"
+                aria-label="Play Shannon J. Love highlight reel"
+              >
+                <img
+                  src={reelThumbnail}
+                  alt="Shannon J. Love highlight reel — YouTube thumbnail"
+                  className="h-full w-full object-cover"
+                />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/40 transition group-hover/reel:bg-black/55">
+                  <span className="rounded-full border-2 border-[#F1D592] bg-[#0F172A]/90 px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-[#F1D592]">
+                    Play Highlight Reel
+                  </span>
+                </span>
+              </button>
+            ) : (
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube.com/embed/${contact.highlightReelId}?rel=0&autoplay=1`}
+                title="Shannon J. Love — Highlight Reel"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            )}
           </div>
           <p className="bg-[#1E293B] py-2 text-center text-xs uppercase tracking-[0.3em] text-[#C5A059]">
             Highlight Reel

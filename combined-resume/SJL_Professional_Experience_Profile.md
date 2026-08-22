@@ -17,6 +17,7 @@
 4. **Tune keywords** using the Role-Tuned Keyword Matrices (Section 5) to match the target job posting.
 5. **Lead with proof metrics** from Section 4 (Analytics & Impact Metrics) for executive and creative-director audiences.
 6. **Brand voice:** Story-first, culturally literate, empathetic, precise, aspirational — never hype without evidence.
+7. **Gender & pronouns:** Shannon J. Love is **male**. Always use **he/him/his** in third-person copy, bios, press materials, and website about text. **Never use she/her.** Shannon is a man's name in this context — do not assume female based on the name.
 
 ---
 
@@ -24,6 +25,16 @@
 
 ### Legal / Professional Name
 **Shannon J. Love** (also credited as Shannon Love on IMDb)
+
+### Gender & Pronouns (Required — Do Not Get Wrong)
+| Field | Value |
+|---|---|
+| **Gender** | Male |
+| **Pronouns** | he / him / his |
+| **Third-person rule** | Always refer to Shannon as **he/him** in bios, press releases, website copy, LinkedIn summaries written by others, and AI-generated content. |
+| **Common error to avoid** | Do not use she/her because of the name Shannon. Shannon J. Love is a **man**. |
+
+Self-identification in writing samples (e.g., NYPD commendation letter): *"I am a media professional and a native New Yorker… As a **Black man** in his forties…"*
 
 ### Professional Headlines (pick one or combine)
 - Creative Problem Solver · Executive Producer · Writer · Showrunner
@@ -38,13 +49,13 @@
 - *"Stories are emotional architecture. The work is not simply to entertain, but to reveal humanity with clarity, empathy, tension, and truth."*
 
 ### Executive Summary (All-Purpose — ~120 words)
-Award-winning **Creative Director, Executive Producer, Showrunner, Screenwriter, and Speechwriter** with **25+ years** commanding creative strategy, brand storytelling, and content production across **VH1, BET, MTV, TV One, Bravo, ViacomCBS, and Goldman Sachs**. Created and showran TV One's first **$1M+ original reality franchise**, *I Married a Baller*, featured in *Entertainment Weekly* (April 20, 2007). Story Producer on VH1's NFTA-winning *Girls Cruise*. Supervising Producer on BET's flagship news program *The Truth with Jeff Johnson*. Currently Creative Director at Financial Influencer Network (FIN), leading SEC-compliant multi-platform campaigns reaching **10M+ organic followers**. Writes screenplays, political spots, PSAs, speeches, sermons, and long-form essays — architecting stories from pitch deck to broadcast to published page.
+Award-winning **Creative Director, Executive Producer, Showrunner, Screenwriter, and Speechwriter** with **25+ years** commanding creative strategy, brand storytelling, and content production across **VH1, BET, MTV, TV One, Bravo, ViacomCBS, and Goldman Sachs**. He created and showran TV One's first **$1M+ original reality franchise**, *I Married a Baller*, featured in *Entertainment Weekly* (April 20, 2007). Story Producer on VH1's NFTA-winning *Girls Cruise*. Supervising Producer on BET's flagship news program *The Truth with Jeff Johnson*. Currently Creative Director at Financial Influencer Network (FIN), leading SEC-compliant multi-platform campaigns reaching **10M+ organic followers**. He writes screenplays, political spots, PSAs, speeches, sermons, and long-form essays — architecting stories from pitch deck to broadcast to published page.
 
 ### Executive Summary (TV / Production Focus — ~100 words)
 Award-winning Executive Producer and Showrunner with proven command of multi-million-dollar unscripted and documentary production. Creator of TV One's groundbreaking *I Married A Baller* — the network's first **$1M reality series**. Story Producer on VH1's *Girls Cruise* (Best Entertainment Show, National Film & TV Awards). Supervised teams of **15+** on BET's *The Truth with Jeff Johnson*. Managed budgets from **$100K–$500K** across 25+ episodes; directed cross-functional teams across **12+ TV/digital projects** in 18 months. Expert in culturally relevant storytelling, live broadcast operations, post-production supervision, and network delivery from greenlight through air.
 
 ### Executive Summary (Writing / Creative Direction Focus — ~100 words)
-Brooklyn-based production visionary, writer, and cultural storyteller whose work electrifies screens, pages, and audiences. Blends memoir and social criticism across Medium, hosted writing samples, and Inkwell essays. Authored political campaign spots, NYC COVID-19 vaccination PSAs, TV treatments, stage plays, civic correspondence, and long-form personal essays. Creative Director at FIN, converting **30+ credentialed financial experts** into premium SEC-compliant campaigns shipping in **2–4 weeks**. Equal parts strategist and craftsman — fluent in pitch decks, scripts, control rooms, and post pipelines.
+Brooklyn-based production visionary, writer, and cultural storyteller whose work electrifies screens, pages, and audiences. He blends memoir and social criticism across Medium, hosted writing samples, and Inkwell essays. He has authored political campaign spots, NYC COVID-19 vaccination PSAs, TV treatments, stage plays, civic correspondence, and long-form personal essays. Creative Director at FIN, converting **30+ credentialed financial experts** into premium SEC-compliant campaigns shipping in **2–4 weeks**. Equal parts strategist and craftsman — fluent in pitch decks, scripts, control rooms, and post pipelines.
 
 ### Creative Philosophy (for bios and about pages)
 - Crafts content that uncovers unique and engaging stories — demystifying distinctions to capture the contradictions that make us beautifully human.
@@ -718,10 +729,10 @@ Shannon J. Love is **NOT**: Shannon Pederson (Flavor of Love), Shannon Amos (Joh
 ## 18. Brand Messaging Bank (Copy-Ready)
 
 **Short bio (50 words):**
-Shannon J. Love is a Brooklyn-based Executive Producer, Writer, and Creative Problem Solver with 25+ years shaping culture-defining television, film, and digital media for TV One, BET, VH1, MTV, and Goldman Sachs.
+Shannon J. Love is a Brooklyn-based Executive Producer, Writer, and Creative Problem Solver with 25+ years shaping culture-defining television, film, and digital media for TV One, BET, VH1, MTV, and Goldman Sachs. He/him.
 
 **Medium bio (100 words):**
-Shannon J. Love is an award-winning Executive Producer, Showrunner, Screenwriter, and Creative Director with 25+ years at the intersection of television, film, editorial, and digital media. Creator of TV One's *I Married A Baller*, Story Producer on VH1's NFTA-winning *Girls Cruise*, and Supervising Producer on BET's *The Truth with Jeff Johnson*. Currently Creative Director at the Financial Influencer Network. Writes political copy, PSAs, treatments, speeches, and long-form essays. Brooklyn, NY.
+Shannon J. Love is an award-winning Executive Producer, Showrunner, Screenwriter, and Creative Director with 25+ years at the intersection of television, film, editorial, and digital media. He created TV One's *I Married A Baller*, served as Story Producer on VH1's NFTA-winning *Girls Cruise*, and Supervising Producer on BET's *The Truth with Jeff Johnson*. He is currently Creative Director at the Financial Influencer Network. He writes political copy, PSAs, treatments, speeches, and long-form essays. Brooklyn, NY. **He/him.**
 
 **LinkedIn headline options:**
 - Words create worlds… Desire to inspire! | Executive Producer · Writer · Showrunner
@@ -745,10 +756,18 @@ When building a resume or portfolio site from this profile:
 - Typography: Playfair Display (headlines) + Inter (body)
 - Card backgrounds: `#1E293B`
 
+**Visual media rules (required):**
+- **Shannon J. Love is male** — display he/him where pronouns appear on site; never use she/her.
+- **Do NOT use stock photos, AI-generated portraits, headshots, or placeholder hero images.**
+- **Use ONLY official YouTube video thumbnails** for all visual media on TV/reel sections:
+  - Format: `https://img.youtube.com/vi/{VIDEO_ID}/hqdefault.jpg`
+  - Each thumbnail must map to a real linked video in the credit registry (Section 9).
+- Writing samples may use typography-led cards without images, or link to hosted text at writingsamples.shannonjeffreylove.com.
+
 **Required page sections:**
-1. Hero + embedded highlight reel (TiNkR4_L0KM)
+1. Hero + highlight reel (YouTube thumbnail → click to play embed; video ID `TiNkR4_L0KM`)
 2. Executive summary + stats strip
-3. TV & Broadcast Work — grid with YouTube links
+3. TV & Broadcast Work — grid with **YouTube thumbnail images** linking to each video
 4. The Pen — writing sample cards linking to writingsamples.shannonjeffreylove.com
 5. Experience timeline
 6. Awards + Education

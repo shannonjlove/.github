@@ -18,6 +18,11 @@ npm run build
 
 Deploy the `dist/` folder to **resume.shannonjeffreylove.com**.
 
+## Identity notes for builders
+
+- **Shannon J. Love is male (he/him).** Never use she/her in copy.
+- **Visuals:** Use only official YouTube video thumbnails (`img.youtube.com/vi/{ID}/hqdefault.jpg`) — no stock photos or portrait headshots.
+
 ## Sections
 
 - Hero with embedded highlight reel

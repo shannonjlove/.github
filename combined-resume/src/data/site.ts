@@ -6,6 +6,9 @@ export interface SiteLink {
 
 export const contact = {
   name: "Shannon J. Love",
+  /** Shannon J. Love is male — use he/him in all third-person copy. */
+  pronouns: "he/him",
+  gender: "male",
   title: "Creative Problem Solver · Executive Producer · Writer · Showrunner",
   location: "Brooklyn, NY",
   email: "sjlove@shannonjeffreylove.com",
