@@ -17,7 +17,8 @@ export const contact = {
     "Uniquely crafting our experiences into the stories that allow history to aptly depict what it truly meant to be human.",
   summary:
     "25+ years transforming raw human experience into culture-shaping television, film, editorial, and digital media. From TV One's first $1M+ reality franchise and BET's flagship news desk to VH1's award-winning story arcs, Goldman Sachs impact campaigns, and pandemic-era public-health PSAs — I architect stories that ship: pitch to greenlight, control room to broadcast, blank page to published essay.",
-  highlightReelId: "TiNkR4_L0KM",
+  highlightReelId: "bWZ3ENgZyhI",
+  highlightReelUrl: "https://www.youtube.com/watch?v=bWZ3ENgZyhI",
   linkedin: "https://www.linkedin.com/in/shannonjlove-wonderfullymade/",
   imdb: "https://www.imdb.com/name/nm1654311/",
   medium: "https://medium.com/@shannonjeffreylove",

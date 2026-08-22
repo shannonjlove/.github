@@ -95,9 +95,35 @@ Brooklyn-based production visionary, writer, and cultural storyteller whose work
 | https://www.shannonj.love | Portfolio alias |
 | https://thefinnetwork.com | Financial Influencer Network (current employer) |
 
-### Highlight Reel (Primary Embed)
-- **YouTube:** https://youtu.be/TiNkR4_L0KM
-- **Embed ID:** `TiNkR4_L0KM`
+### Highlight Reel (Primary Hero Embed)
+- **Primary:** Shannon J Love Highlight Reel — https://www.youtube.com/watch?v=bWZ3ENgZyhI
+- **Embed ID:** `bWZ3ENgZyhI`
+- **Alternate:** Shannon's Highlight Reel — https://www.youtube.com/watch?v=TiNkR4_L0KM (`TiNkR4_L0KM`)
+
+### Representative Work Samples (Authoritative Video Links)
+
+Use this list as the **canonical set** for portfolio grids, resume links, and YouTube thumbnails. Order preserved as provided by Shannon J. Love.
+
+| # | Title | YouTube URL | Video ID |
+|---|---|---|---|
+| 1 | Shannon J Love Highlight Reel | https://www.youtube.com/watch?v=bWZ3ENgZyhI | `bWZ3ENgZyhI` |
+| 2 | The Truth With Jeff Johnson | https://www.youtube.com/watch?v=4FcOwmbnbbE | `4FcOwmbnbbE` |
+| 3 | Monica Still Standing | https://www.youtube.com/watch?v=ze4crC3Kgxk | `ze4crC3Kgxk` |
+| 4 | Bounce Back Stories — Earl Cox | https://www.youtube.com/watch?v=oFSsrLH0XAY | `oFSsrLH0XAY` |
+| 5 | Power of You Teens Promo | https://www.youtube.com/watch?v=XXTGyWtVUYs | `XXTGyWtVUYs` |
+| 6 | Shannon's Highlight Reel | https://www.youtube.com/watch?v=TiNkR4_L0KM | `TiNkR4_L0KM` |
+| 7 | One Million Black Women | https://www.youtube.com/watch?v=D_nwXaYF7Oo | `D_nwXaYF7Oo` |
+| 8 | Girls Cruise Promo | https://www.youtube.com/watch?v=icD-4qEpu_E | `icD-4qEpu_E` |
+| 9 | Famous People — Taj | https://www.youtube.com/watch?v=uXhoqgSjHQU | `uXhoqgSjHQU` |
+| 10 | I Married a Baller | https://www.youtube.com/watch?v=IQs4N6SUoSk | `IQs4N6SUoSk` |
+| 11 | Hip Hop vs America | https://www.youtube.com/watch?v=ToON_QY-nGM | `ToON_QY-nGM` |
+| 12 | Million More Movement | https://www.youtube.com/watch?v=BgFjNj9M7ko | `BgFjNj9M7ko` |
+| 13 | The Truth Series | https://www.youtube.com/watch?v=0DCogG7PJCY | `0DCogG7PJCY` |
+| 14 | Graphic Open Montage | https://www.youtube.com/watch?v=a_TtlGbu6aQ | `a_TtlGbu6aQ` |
+
+**Thumbnail URL pattern:** `https://img.youtube.com/vi/{VIDEO_ID}/hqdefault.jpg`
+
+**Full reel archive:** https://shannonjlove.tv
 
 ---
 
@@ -511,40 +537,10 @@ Celebrity profile special featuring Taj Johnson-George (SWV).
 
 ## 9. Complete Project & Credit Registry
 
-| Project | Role | Network / Brand | Sample Link |
-|---|---|---|---|
-| Shannon's Highlight Reel | Showcase | — | https://youtu.be/TiNkR4_L0KM |
-| I Married A Baller | Creator / Showrunner / EP / Writer / Director | TV One | https://youtu.be/IQs4N6SUoSk |
-| Famous People: Taj George | Producer | TV One | https://youtu.be/uXhoqgSjHQU |
-| Girls Cruise | Story Producer | VH1 | https://youtu.be/icD-4qEpu_E |
-| The Truth with Jeff Johnson | Supervising Producer | BET | https://youtu.be/4FcOwmbnbbE |
-| The Truth Series | Supervising Producer | BET | https://youtu.be/0DCogG7PJCY |
-| MTV: True Life (Gun Control) | Senior Producer / Producer | MTV | `[Emmy franchise — verify episode]` |
-| Monica: Still Standing | Assistant Director | BET | https://youtu.be/ze4crC3Kgxk |
-| Beyond Beef: Jay-Z & Nas | Producer / Director | BET | `[SELF-REPORTED]` |
-| Hip Hop vs. America | Producer | BET | https://youtu.be/ToON_QY-nGM |
-| Hip Hop vs. America II: Where Did the Love Go? | Producer | BET | `[IMDb VERIFIED — 2008]` |
-| Common Commentary | Producer | BET | — |
-| Million More Movement | Producer | BET | https://youtu.be/BgFjNj9M7ko |
-| SharpTalk with Al Sharpton | Producer | BET | — |
-| Ludacris Interview: ODB Tribute | Producer / Interviewer | BET | — |
-| Dr. Norman Finkelstein Interview | Producer | BET | — |
-| 05 Rewind | Producer | BET | — |
-| B5 Promo EPK | Producer | BET | — |
-| One Million Black Women | Segment Producer | Goldman Sachs | https://youtu.be/D_nwXaYF7Oo |
-| Bounce Back Stories | Producer / Editor | Branded (Lynnette Khalfani-Cox) | https://youtu.be/oFSsrLH0XAY |
-| Power of You Teens Promo | Producer / Editor | Non-Profit | https://youtu.be/XXTGyWtVUYs |
-| NYC COVID-19 Vaccination Promos (3 spots) | Writer / Producer | Birds Eye View | https://writingsamples.shannonjeffreylove.com/samples/nyc-covid-vaccination-psa |
-| Jaha Howard Campaign Spots (3 spots) | Writer / Producer | Political | https://writingsamples.shannonjeffreylove.com/samples/jaha-howard-political-spots |
-| How The NYPD Saved Christmas… | Co-Writer | NYPD CAD | https://medium.com/@shannonjeffreylove |
-| NYPD Commendation Letter | Author | Civic | https://writingsamples.shannonjeffreylove.com/samples/nypd-commendation-letter |
-| Built For This (Stage Play) | Playwright | Church Production | https://writingsamples.shannonjeffreylove.com/samples/stage-play-and-community-writing |
-| Graphic Open Montage | Producer / Editor | Branded | https://youtu.be/a_TtlGbu6aQ |
-| Rock The Bells Festival Content | Content Producer | Rock The Bells | — |
-| Norman Finkelstein Documentation | Producer / Shooter / Editor | Independent | — |
-| Foot Lust Cafe Promo | Producer | Branded | — |
+### Representative video samples (portfolio priority)
+See **Section 2 — Representative Work Samples** for the authoritative 14-link set with YouTube thumbnails.
 
-**Full reel archive:** https://shannonjlove.tv
+### Extended credits (additional projects)
 
 ---
 
@@ -765,7 +761,7 @@ When building a resume or portfolio site from this profile:
 - Writing samples may use typography-led cards without images, or link to hosted text at writingsamples.shannonjeffreylove.com.
 
 **Required page sections:**
-1. Hero + highlight reel (YouTube thumbnail → click to play embed; video ID `TiNkR4_L0KM`)
+1. Hero + highlight reel (YouTube thumbnail → click to play embed; primary video ID `bWZ3ENgZyhI`)
 2. Executive summary + stats strip
 3. TV & Broadcast Work — grid with **YouTube thumbnail images** linking to each video
 4. The Pen — writing sample cards linking to writingsamples.shannonjeffreylove.com
