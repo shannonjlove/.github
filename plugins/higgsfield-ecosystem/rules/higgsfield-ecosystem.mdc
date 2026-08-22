@@ -1,0 +1,34 @@
+---
+description: Where the Higgsfield stack lives in this workspace, which tool to use, and how to authenticate.
+alwaysApply: true
+---
+
+# Higgsfield ecosystem
+
+This workspace vendors Shannon's Higgsfield repos under `vendor/` and installs a local Cursor plugin named `higgsfield-ecosystem`.
+
+## Repos
+
+| Path | Role |
+| --- | --- |
+| `vendor/higgsfield-ai-prompt-skill` | Prompt construction library (MCSLA, models, Cinema Studio, Seedance) |
+| `vendor/higgsfield-claude-skills` | 19 Seedance/UGC slash skills, including Playwright automation |
+| `vendor/higgsfield-cli` | Official Higgsfield AI CLI source (`higgsfield` binary) |
+| `vendor/higgsfield-client` | Official Python SDK (`import higgsfield_client`) |
+| `vendor/higgsfield` | Legacy multi-node **training** framework (not the image/video API) |
+| `vendor/Open-Higgsfield-AI` | Clabstream AI Studio (Next.js). Run with `npm run dev` in that folder |
+
+## Execution surfaces (prefer in this order)
+
+1. **Higgsfield MCP** (`https://mcp.higgsfield.ai/mcp`) — generate images/video from Cursor once authenticated.
+2. **CLI** — `higgsfield` (AI generate/auth/account). Do not confuse with the training package CLI.
+3. **Python** — `higgsfield_client.subscribe(...)` after `HF_KEY` or `HF_API_KEY` + `HF_API_SECRET` are set.
+4. **Playwright skills** (`higgsfield-image-auto`, `seedance-auto-generate`, `ugc-video-auto`) — only if Playwright MCP is available and the user is logged into higgsfield.ai in that browser.
+
+## Auth
+
+MCP cannot complete OAuth inside Cloud Agents. On desktop Cursor: **Settings → Tools & MCP → Connect** next to Higgsfield, or open [higgsfield.ai](https://higgsfield.ai) / [cloud.higgsfield.ai](https://cloud.higgsfield.ai) for API keys. CLI login is `higgsfield auth login`.
+
+## Prompt vs generate
+
+Use the `higgsfield` prompt skill (and Seedance style skills) to **write** prompts. Use MCP `generate_image` / `generate_video` or `higgsfield generate create` to **run** them.

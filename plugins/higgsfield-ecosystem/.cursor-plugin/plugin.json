@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cursor/plugins/main/schemas/plugin.schema.json",
+  "name": "higgsfield-ecosystem",
+  "displayName": "Higgsfield Ecosystem",
+  "description": "Connect Shannon's Higgsfield skill packs, prompt library, CLI, Python client, and MCP so Cursor can write production prompts and generate images/video.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Shannon J. Love",
+    "email": "sjlove@shannonjeffreylove.com"
+  },
+  "homepage": "https://higgsfield.ai",
+  "repository": "https://github.com/shannonjlove/.github",
+  "license": "MIT",
+  "keywords": [
+    "higgsfield",
+    "seedance",
+    "image-generation",
+    "video-generation",
+    "prompt",
+    "mcp"
+  ],
+  "category": "developer-tools",
+  "tags": ["media", "creative", "ai-generation", "video", "image"],
+  "skills": "./skills/",
+  "rules": "./rules/",
+  "commands": "./commands/"
+}
