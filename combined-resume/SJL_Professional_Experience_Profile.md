@@ -542,6 +542,26 @@ See **Section 2 — Representative Work Samples** for the authoritative 14-link 
 
 ### Extended credits (additional projects)
 
+| Project | Role | Network / Brand | Sample Link |
+|---|---|---|---|
+| MTV: True Life (Gun Control) | Senior Producer / Producer | MTV | `[Emmy franchise — verify episode]` |
+| Beyond Beef: Jay-Z & Nas | Producer / Director | BET | `[SELF-REPORTED]` |
+| Hip Hop vs. America II: Where Did the Love Go? | Producer | BET | `[IMDb VERIFIED — 2008]` |
+| Common Commentary | Producer | BET | — |
+| SharpTalk with Al Sharpton | Producer | BET | — |
+| Ludacris Interview: ODB Tribute | Producer / Interviewer | BET | — |
+| Dr. Norman Finkelstein Interview | Producer | BET | — |
+| 05 Rewind | Producer | BET | — |
+| B5 Promo EPK | Producer | BET | — |
+| NYC COVID-19 Vaccination Promos (3 spots) | Writer / Producer | Birds Eye View | https://writingsamples.shannonjeffreylove.com/samples/nyc-covid-vaccination-psa |
+| Jaha Howard Campaign Spots (3 spots) | Writer / Producer | Political | https://writingsamples.shannonjeffreylove.com/samples/jaha-howard-political-spots |
+| How The NYPD Saved Christmas… | Co-Writer | NYPD CAD | https://medium.com/@shannonjeffreylove |
+| NYPD Commendation Letter | Author | Civic | https://writingsamples.shannonjeffreylove.com/samples/nypd-commendation-letter |
+| Built For This (Stage Play) | Playwright | Church Production | https://writingsamples.shannonjeffreylove.com/samples/stage-play-and-community-writing |
+| Rock The Bells Festival Content | Content Producer | Rock The Bells | — |
+| Norman Finkelstein Documentation | Producer / Shooter / Editor | Independent | — |
+| Foot Lust Cafe Promo | Producer | Branded | — |
+
 ---
 
 ## 10. Writing Portfolio — Hosted Samples & Published Work
