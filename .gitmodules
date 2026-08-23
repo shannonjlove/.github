@@ -1,0 +1,15 @@
+[submodule "libs/TagListView"]
+	path = libs/TagListView
+	url = https://github.com/shannonjlove/TagListView.git
+[submodule "libs/sublime-Tag"]
+	path = libs/sublime-Tag
+	url = https://github.com/titoBouzout/Tag.git
+[submodule "libs/tagbar"]
+	path = libs/tagbar
+	url = https://github.com/shannonjlove/tagbar.git
+[submodule "libs/TagStudio"]
+	path = libs/TagStudio
+	url = https://github.com/shannonjlove/TagStudio.git
+[submodule "libs/tag2"]
+	path = libs/tag2
+	url = https://github.com/shannonjlove/tag2.git
