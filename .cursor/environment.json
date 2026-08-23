@@ -1,0 +1,6 @@
+{
+  "install": "bash scripts/install-lovecloudsjl-github.sh",
+  "repositoryDependencies": [
+    "github.com/lovecloudsjl/.github"
+  ]
+}
