@@ -1,0 +1,3 @@
+{
+  "install": "bash scripts/connect-install-tag-libraries.sh"
+}

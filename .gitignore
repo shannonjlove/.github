@@ -1,0 +1,5 @@
+# Fallback clone (lovecloudsjl/tag is not a public submodule)
+libs/macos-tag/
+
+# TagStudio local env (created only when Python 3.14 is available)
+libs/TagStudio/.venv/
