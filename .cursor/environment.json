@@ -1,0 +1,8 @@
+{
+  "name": "koofr-clients",
+  "install": "bash scripts/install-koofr-clients.sh",
+  "repositoryDependencies": [
+    "github.com/shannonjlove/go-koofrclient",
+    "github.com/shannonjlove/python-koofr"
+  ]
+}
