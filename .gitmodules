@@ -1,0 +1,7 @@
+[submodule "vendor/go-koofrclient"]
+	path = vendor/go-koofrclient
+	url = https://github.com/shannonjlove/go-koofrclient.git
+[submodule "vendor/python-koofr"]
+	path = vendor/python-koofr
+	url = https://github.com/shannonjlove/python-koofr.git
+	ignore = dirty
