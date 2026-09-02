@@ -5,7 +5,14 @@
   "description_for_human": "Manage secrets and environment variables using 1Password CLI. Supports local development, deployment automation, and secure secret management across multiple environments.",
   "description_for_model": "This plugin helps users manage secrets and environment variables using the 1Password CLI. It provides commands to list vaults, manage secrets, validate configurations, rotate credentials, and deploy applications with secure secret injection. Supports development, staging, and production environments.",
   "auth": {
-    "type": "none"
+    "type": "oauth2",
+    "client_url": "https://github.com/login/oauth/authorize",
+    "scope": "read:repo,gist",
+    "authorization_url": "https://github.com/login/oauth/access_token",
+    "authorization_content_type": "application/json",
+    "verification_tokens": {
+      "openai": "plugin_token_from_openai"
+    }
   },
   "api": {
     "type": "openapi",

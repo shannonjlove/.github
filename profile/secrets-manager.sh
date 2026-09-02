@@ -76,6 +76,7 @@ get_secret() {
 # Load all secrets into environment variables
 load_secrets_to_env() {
     local environment="${1:-development}"
+    local template_file="${PROJECT_ROOT}/.github/profile/.env.${environment}.template"
 
     log_info "Loading secrets for environment: $environment"
 
@@ -88,18 +89,39 @@ load_secrets_to_env() {
             ;;
     esac
 
-    # This would parse the YAML config and load secrets
-    # For now, just load from template files
+    if [ ! -f "$template_file" ]; then
+        log_error "Template file not found: $template_file"
+        return 1
+    fi
+
     local count=0
     local failures=0
 
-    if [ -f "${PROJECT_ROOT}/.github/profile/.env.${environment}" ]; then
-        log_info "Loading from .env.${environment}"
-        source "${PROJECT_ROOT}/.github/profile/.env.${environment}"
-        count=$((count + 1))
-    fi
+    log_info "Loading secrets from template: $template_file"
 
-    log_info "Loaded $count environment files, $failures failures"
+    # Read template file and resolve op:// references
+    while IFS='=' read -r key value; do
+        # Skip comments and empty lines
+        [[ "$key" =~ ^#.*$ ]] && continue
+        [[ -z "$key" ]] && continue
+
+        # Resolve op:// references using 1Password CLI
+        if [[ "$value" =~ ^op:// ]]; then
+            resolved_value=$(op read "$value" 2>/dev/null)
+            if [ $? -eq 0 ]; then
+                export "$key=$resolved_value"
+                count=$((count + 1))
+            else
+                log_warn "Failed to resolve: $key=$value"
+                failures=$((failures + 1))
+            fi
+        else
+            export "$key=$value"
+            count=$((count + 1))
+        fi
+    done < "$template_file"
+
+    log_info "Loaded $count secrets, $failures failures"
     return $([[ $failures -eq 0 ]] && echo 0 || echo 1)
 }
 
@@ -241,7 +263,7 @@ verify_secrets() {
 
     log_info "Verifying secrets integrity in vault: $vault"
 
-    local all_items=$(op item list --vault "$vault" --format json 2>/dev/null | jq '.[] | .id')
+    local all_items=$(op item list --vault "$vault" --format json 2>/dev/null | jq -r '.[] | .id')
     local verified=0
     local failed=0
 

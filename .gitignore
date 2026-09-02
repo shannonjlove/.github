@@ -1,2 +1,13 @@
 .deployment.log
 .secrets-logs/
+# Exported environment files contain secrets - never commit
+.env
+.env.local
+.env.*.local
+.env.bak
+profile/.env.development
+profile/.env.staging
+profile/.env.production
+# Backups and cache
+*.bak
+.DS_Store
