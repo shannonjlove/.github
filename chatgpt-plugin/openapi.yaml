@@ -1,0 +1,458 @@
+openapi: 3.0.0
+info:
+  title: 1Password CLI Manager API
+  description: API for managing secrets and environment variables using 1Password CLI
+  version: 1.0.0
+  contact:
+    name: Support
+    url: https://github.com/shannonjlove/1password-cli-skill
+servers:
+  - url: https://api.1password-cli-manager.local
+    description: Local API server (for demonstration)
+paths:
+  /secrets/list:
+    get:
+      operationId: listSecrets
+      summary: List all secrets in a vault
+      description: Returns a list of all secrets stored in the specified 1Password vault
+      parameters:
+        - name: vault
+          in: query
+          required: true
+          description: The name of the 1Password vault
+          schema:
+            type: string
+            example: "Development Secrets"
+      responses:
+        '200':
+          description: List of secrets retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vault:
+                    type: string
+                    description: Vault name
+                  secrets:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Secret ID
+                        title:
+                          type: string
+                          description: Secret name/title
+                        category:
+                          type: string
+                          description: Secret category (api_credential, database, etc)
+                        createdAt:
+                          type: string
+                          description: Creation timestamp
+                  count:
+                    type: integer
+                    description: Total number of secrets
+        '401':
+          description: Not authenticated with 1Password
+        '404':
+          description: Vault not found
+
+  /secrets/get:
+    get:
+      operationId: getSecret
+      summary: Get a specific secret
+      description: Retrieve the details of a specific secret from 1Password vault
+      parameters:
+        - name: vault
+          in: query
+          required: true
+          description: The name of the 1Password vault
+          schema:
+            type: string
+            example: "Development Secrets"
+        - name: item
+          in: query
+          required: true
+          description: The secret/item name
+          schema:
+            type: string
+            example: "github-credentials"
+        - name: field
+          in: query
+          required: false
+          description: Specific field to retrieve (defaults to password)
+          schema:
+            type: string
+            example: "token"
+      responses:
+        '200':
+          description: Secret retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vault:
+                    type: string
+                  item:
+                    type: string
+                  fields:
+                    type: object
+                    additionalProperties:
+                      type: string
+                  metadata:
+                    type: object
+                    properties:
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+        '404':
+          description: Secret not found
+
+  /secrets/validate:
+    post:
+      operationId: validateSecrets
+      summary: Validate required secrets exist
+      description: Check that all required secrets exist in the specified vault
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vault:
+                  type: string
+                  description: Vault name
+                  example: "Development Secrets"
+                required_fields:
+                  type: array
+                  items:
+                    type: string
+                  description: List of required secret names
+                  example: ["github-credentials", "npm-credentials", "claude-credentials"]
+      responses:
+        '200':
+          description: Validation results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  vault:
+                    type: string
+                  results:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        exists:
+                          type: boolean
+                        message:
+                          type: string
+                  summary:
+                    type: object
+                    properties:
+                      total_required:
+                        type: integer
+                      found:
+                        type: integer
+                      missing:
+                        type: integer
+
+  /secrets/rotate:
+    post:
+      operationId: rotateSecret
+      summary: Rotate a secret/credential
+      description: Update a secret field with a new value (useful for rotating credentials)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vault:
+                  type: string
+                  description: Vault name
+                  example: "Development Secrets"
+                item:
+                  type: string
+                  description: Secret/item name
+                  example: "github-credentials"
+                field:
+                  type: string
+                  description: Field to update
+                  example: "token"
+                new_value:
+                  type: string
+                  description: New value for the field
+                  example: "ghp_new_token_value"
+      responses:
+        '200':
+          description: Secret rotated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  vault:
+                    type: string
+                  item:
+                    type: string
+                  field:
+                    type: string
+                  rotated_at:
+                    type: string
+
+  /vaults/list:
+    get:
+      operationId: listVaults
+      summary: List all available vaults
+      description: Returns a list of all 1Password vaults accessible to the current user
+      responses:
+        '200':
+          description: List of vaults
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vaults:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+                          enum: [USER_CREATED, EVERYONE, CUSTOM]
+                        description:
+                          type: string
+                  total:
+                    type: integer
+
+  /deployment/check:
+    get:
+      operationId: checkDeploymentSetup
+      summary: Check deployment configuration
+      description: Verify 1Password CLI installation and authentication setup
+      responses:
+        '200':
+          description: Setup status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cli_installed:
+                    type: boolean
+                  cli_version:
+                    type: string
+                  authenticated:
+                    type: boolean
+                  current_account:
+                    type: string
+                  vaults_accessible:
+                    type: array
+                    items:
+                      type: string
+                  status:
+                    type: string
+                    enum: [ready, not_authenticated, cli_not_installed]
+
+  /deployment/deploy:
+    post:
+      operationId: deployServer
+      summary: Deploy MCP server with secrets
+      description: Deploy an MCP server with secrets automatically injected from 1Password vault
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server:
+                  type: string
+                  description: Server to deploy
+                  enum: ["api-mcp-server", "claude-memory-mcp", "github-mcp-server", "mcp-ssh-server", "all"]
+                  example: "api-mcp-server"
+                environment:
+                  type: string
+                  description: Target environment
+                  enum: ["development", "staging", "production"]
+                  example: "development"
+                verify:
+                  type: boolean
+                  description: Verify secrets before deployment
+                  default: true
+      responses:
+        '200':
+          description: Deployment initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  server:
+                    type: string
+                  environment:
+                    type: string
+                  status:
+                    type: string
+                  message:
+                    type: string
+                  deployment_id:
+                    type: string
+
+  /environment/export:
+    post:
+      operationId: exportEnvironment
+      summary: Export secrets to environment file
+      description: Export all secrets from a vault to an .env file format
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vault:
+                  type: string
+                  description: Vault name
+                  example: "Development Secrets"
+                format:
+                  type: string
+                  description: Export format
+                  enum: ["env", "json", "yaml"]
+                  default: "env"
+      responses:
+        '200':
+          description: Environment exported successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  vault:
+                    type: string
+                  format:
+                    type: string
+                  content:
+                    type: string
+                    description: Exported content
+                  variable_count:
+                    type: integer
+                  warning:
+                    type: string
+                    description: Security warning about file handling
+
+  /audit/report:
+    get:
+      operationId: generateAuditReport
+      summary: Generate audit report
+      description: Generate a security audit report of secret access and modifications
+      parameters:
+        - name: days
+          in: query
+          required: false
+          description: Number of days to include in report
+          schema:
+            type: integer
+            default: 7
+            example: 7
+        - name: vault
+          in: query
+          required: false
+          description: Specific vault to audit (optional)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Audit report generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  period_days:
+                    type: integer
+                  generated_at:
+                    type: string
+                  summary:
+                    type: object
+                    properties:
+                      total_access_events:
+                        type: integer
+                      total_modifications:
+                        type: integer
+                      vaults_accessed:
+                        type: array
+                        items:
+                          type: string
+                  events:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                        action:
+                          type: string
+                        item:
+                          type: string
+                        vault:
+                          type: string
+
+components:
+  schemas:
+    Secret:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        category:
+          type: string
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+
+    Vault:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
