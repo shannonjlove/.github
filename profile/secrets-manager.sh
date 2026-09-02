@@ -115,7 +115,8 @@ export_secrets_to_file() {
 
     log_info "Exporting secrets from vault: $vault"
 
-    touch "$output_file"
+    # Create new file (truncate if exists)
+    > "$output_file"
     chmod 600 "$output_file"
 
     # List all items in vault and export
@@ -146,9 +147,9 @@ validate_secrets() {
     log_info "Validating secrets in vault: $vault"
 
     local required_fields=(
-        "github-token"
-        "npm-token"
-        "claude-api-key"
+        "github-credentials"
+        "npm-credentials"
+        "claude-credentials"
     )
 
     local missing=0
@@ -221,7 +222,7 @@ rotate_secret() {
 create_secret() {
     local vault="$1"
     local item_name="$2"
-    local category="${3:-api_credential}"
+    local category="${3:-API Credential}"
 
     log_info "Creating new secret: $item_name in vault: $vault"
 
