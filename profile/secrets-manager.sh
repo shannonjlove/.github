@@ -107,14 +107,14 @@ load_secrets_to_env() {
 
         # Resolve op:// references using 1Password CLI
         if [[ "$value" =~ ^op:// ]]; then
-            resolved_value=$(op read "$value" 2>/dev/null)
-            if [ $? -eq 0 ]; then
-                export "$key=$resolved_value"
-                count=$((count + 1))
-            else
+            # Capture both output and exit code without aborting on error
+            resolved_value=$(op read "$value" 2>&1) || {
                 log_warn "Failed to resolve: $key=$value"
                 failures=$((failures + 1))
-            fi
+                continue
+            }
+            export "$key=$resolved_value"
+            count=$((count + 1))
         else
             export "$key=$value"
             count=$((count + 1))
